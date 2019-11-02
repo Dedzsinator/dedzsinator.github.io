@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title></title>
+    <link rel="stylesheet" href="css/caravan.css">
+  </head>
+  <body>
+    <h1 style="text-align: center">Caraván!</h1>
+    <h3 style="text-align: center">A cél, hogy a caraván hazaérjen épségben!</h3>
+    <a href="index.html" class="btn back" type="button">Vissza a Főoldalra</a>
+    <div id="home"></div>
+    <div id="journey">
+      <div id="stats-area">
+        <div class="stat">Nap<img src="img/caravan/day.png" id="day"> <span id="stat-day" class="stat-value"></span></div>
+        <div class="stat">Távolság <img src="img/caravan/wheel.png" id="dist"> <span id="stat-distance"class="stat-value"></span></div>
+        <div class="stat">Csapattagok <img src="img/caravan/crew.png" id="crew"> <span id="stat-crew"class="stat-value"></span></div>
+        <div class="stat">Ökrök <img src="img/caravan/ox.png" id="ox"> <span id="stat-oxen" class="stat-value"></span></div>
+        <div class="stat">Étel <img src="img/caravan/food.png" id="food"> <span id="stat-food"class="stat-value"></span></div>
+        <div class="stat">Pénz <img src="img/caravan/coin.png" id="coin"> <span id="stat-money"class="stat-value"></span></div>
+        <div class="stat">Tűzerő <img src="img/caravan/guns.png" id="fire"> <span id="stat-firepower"class="stat-value"></span></div>
+        <div class="stat">Súly <img src="img/caravan/heavy.png" id="heavy"> <span id="stat-weight"class="stat-value"></span><span id="stat-capacity" class="stat-value"></span></div>
+      </div>
+      <div class="updates-area" id="updates-area"></div>
+      <div id="shop" class="hidden">
+        <div id="prods">
+        </div>
+        <button class="btn exit">Bolt elhagyása</button>
+      </div>
+      <div id="attack" class="hidden">
+        <div id="attack-description"></div>
+        <button class="btn" id="fight">Harc!</button>
+        <button class="btn" id="runaway">Visszavonulás</button>
+      </div>
+      <div id="progress-area">
+
+        <img id="caravan" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAUCAMAAACgaw2xAAADAFBMVEUAADMAAAAAAGYAAJkAAMwAAP8AMwAAMzMAM2YAM5kAM8wAM/8AZgAAZjMAZmYAZpkAZswAZv8AmQAAmTMAmWYAmZkAmcwAmf8AzAAAzDMAzGYAzJkAzMwAzP8A/wAA/zMA/2YA/5kA/8wA//8zAAAzADMzAGYzAJkzAMwzAP8zMwAzMzMzM2YzM5kzM8wzM/8zZgAzZjMzZmYzZpkzZswzZv8zmQAzmTMzmWYzmZkzmcwzmf8zzAAzzDMzzGYzzJkzzMwzzP8z/wAz/zMz/2Yz/5kz/8wz//9mAABmADNmAGZmAJlmAMxmAP9mMwBmMzNmM2ZmM5lmM8xmM/9mZgBmZjNmZmZmZplmZsxmZv9mmQBmmTNmmWZmmZlmmcxmmf9mzABmzDNmzGZmzJlmzMxmzP9m/wBm/zNm/2Zm/5lm/8xm//+ZAACZADOZAGaZAJmZAMyZAP+ZMwCZMzOZM2aZM5mZM8yZM/+ZZgCZZjOZZmaZZpmZZsyZZv+ZmQCZmTOZmWaZmZmZmcyZmf+ZzACZzDOZzGaZzJmZzMyZzP+Z/wCZ/zOZ/2aZ/5mZ/8yZ///MAADMADPMAGbMAJnMAMzMAP/MMwDMMzPMM2bMM5nMM8zMM//MZgDMZjPMZmbMZpnMZszMZv/MmQDMmTPMmWbMmZnMmczMmf/MzADMzDPMzGbMzJnMzMzMzP/M/wDM/zPM/2bM/5nM/8zM////AAD/ADP/AGb/AJn/AMz/AP//MwD/MzP/M2b/M5n/M8z/M///ZgD/ZjP/Zmb/Zpn/Zsz/Zv//mQD/mTP/mWb/mZn/mcz/mf//zAD/zDP/zGb/zJn/zMz/zP///wD//zP//2b//5n//8z///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADmF2DdAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQffCQcXKDY09dBUAAAAmklEQVQY05WQMQ5DMQhD6XXIXZicwzDmMN5yyAL5ab+i6kv18IRtGBKZImakhDY1OGWSnONOpqJIjZOPBdNwfkjeCq61L5+L1Dg5JacRJrBYLp80DrEoV8F/Cgrgw90tUSOkfs1+KHNRN88DuxC5VmHau722zMLZOtBY7Tv3UjbQ7grIkiM81OsCDa67ULTmVcTs2HnsKRSRvwFhus6KEejNnAAAAABJRU5ErkJggg==" />
+        <img id="trees" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMoAAAAfCAMAAACRSKIGAAAAA3NCSVQICAjb4U/gAAADAFBMVEUAAAAAADMAAGYAAJkAAMwAAP8AMwAAMzMAM2YAM5kAM8wAM/8AZgAAZjMAZmYAZpkAZswAZv8AmQAAmTMAmWYAmZkAmcwAmf8AzAAAzDMAzGYAzJkAzMwAzP8A/wAA/zMA/2YA/5kA/8wA//8zAAAzADMzAGYzAJkzAMwzAP8zMwAzMzMzM2YzM5kzM8wzM/8zZgAzZjMzZmYzZpkzZswzZv8zmQAzmTMzmWYzmZkzmcwzmf8zzAAzzDMzzGYzzJkzzMwzzP8z/wAz/zMz/2Yz/5kz/8wz//9mAABmADNmAGZmAJlmAMxmAP9mMwBmMzNmM2ZmM5lmM8xmM/9mZgBmZjNmZmZmZplmZsxmZv9mmQBmmTNmmWZmmZlmmcxmmf9mzABmzDNmzGZmzJlmzMxmzP9m/wBm/zNm/2Zm/5lm/8xm//+ZAACZADOZAGaZAJmZAMyZAP+ZMwCZMzOZM2aZM5mZM8yZM/+ZZgCZZjOZZmaZZpmZZsyZZv+ZmQCZmTOZmWaZmZmZmcyZmf+ZzACZzDOZzGaZzJmZzMyZzP+Z/wCZ/zOZ/2aZ/5mZ/8yZ///MAADMADPMAGbMAJnMAMzMAP/MMwDMMzPMM2bMM5nMM8zMM//MZgDMZjPMZmbMZpnMZszMZv/MmQDMmTPMmWbMmZnMmczMmf/MzADMzDPMzGbMzJnMzMzMzP/M/wDM/zPM/2bM/5nM/8zM////AAD/ADP/AGb/AJn/AMz/AP//MwD/MzP/M2b/M5n/M8z/M///ZgD/ZjP/Zmb/Zpn/Zsz/Zv//mQD/mTP/mWb/mZn/mcz/mf//zAD/zDP/zGb/zJn/zMz/zP///wD//zP//2b//5n//8z///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABlenwdAAABAHRSTlP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG8mZagAAAAlwSFlzAAAOxAAADsQBlSsOGwAAALBJREFUWIXtk7sRwCAMQ7UkndcJi4ShGCeYED5OmQb5osLG79TojJG7YozZiolhUBGxXio2oojKWKlYjxIrXmNzMSx09ZKxvpWGl9RczN9WHjp72ViLIkPdysb83coun+QLg6HDS8cwb+pWs9Ixd2e/zSf5wmDp4+Vj/m5FFULIVkwMM315qRgON/qj7Kg/yo7SKOdZn+wNWutI31BqSmXkb9CqI39DrWXkb0hu5CjKBSdEAM8GjFOdAAAAAElFTkSuQmCC" />
+      </div>
+    </div>
+
+    <div id="event"></div>
+	<script src="js/caravan.js"></script>
+  </body>
+</html>
