@@ -1,37 +1,10 @@
 <?php
-$username = filter_input(INPUT_POST, 'username');
-$password = filter_input(INPUT_POST, 'password');
-if (!empty($username)){
-if (!empty($password)){
-$host = "localhost";
-$dbusername = "root";
-$dbpassword = "";
-$dbname = "youtube";
-// Create connection
-$conn = new mysqli ($host, $dbusername, $dbpassword, $dbname);
-if (mysqli_connect_error()){
-die('Connect Error ('. mysqli_connect_errno() .') '
-. mysqli_connect_error());
-}
-else{
-$sql = "INSERT INTO account (username, password)
-values ('$username','$password')";
-if ($conn->query($sql)){
-echo "Felírva!";
-}
-else{
-echo "Error: ". $sql ."
-". $conn->error;
-}
-$conn->close();
-}
-}
-else{
-echo "Ne legyen üres";
-die();
-}
-}
-else{
-echo "Ne legyen üres";
-die();
-}
+	$data_file = fopen("example.txt", "a");
+
+	$name = $_POST["name"];
+	$age = $_POST["age"];
+	$text_to_write = $name . " " . $age;
+	
+	fwrite($data_file, $text_to_write);
+	fclose($data_file);
+?>
