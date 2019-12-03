@@ -18,7 +18,7 @@ function draw() {
 
     stroke(255);
     strokeWeight(2);
-    fill(241, 82, 255);
+    fill(179, 0, 0);
     beginShape();
     for (let v of heart) {
         vertex(v.x, v.y);
