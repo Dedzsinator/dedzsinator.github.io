@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <title>Sorter</title>
+    <script src='js/lib/jquery-1.11.3.min.js'></script>
+    <script src='js/lib/bootstrap.min.js'></script>
+    <script src='js/sorting.js'></script>
+    <link href='css/bootstrap.min.css' rel='stylesheet'>
+    <style>
+      .compare {
+        font-weight: bold;
+        color: #00F;
+      }
+      .swap {
+        font-weight: bold;
+        color: #F00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='container-fluid'>
+      <div class='row'>
+        <div class='col-xs-3'>
+          <div class='form-group'>
+            <label for='#array-size'>Tömb mérete</label>
+            <input id='array-size' class='form-control' type='number' value="50"/>
+          </div>
+          <div class='form-group'>
+            <label for='#algo-select'>Algoritmusok</label>
+            <select class='form-control' id='algo-select'>
+              <option value='bubblesort'>Bubble sort</option>
+              <option value='selectionsort'>Selection sort</option>
+              <option value='insertionsort'>Insertion sort</option>
+              <option value='odd_even_sort'>Odd-even sort</option>
+              <option value='cocktail_sort'>Cocktail sort</option>
+              <option value='quicksort'>Quicksort</option>
+              <option value='heapsort'>Heapsort</option>
+              <option value='mergesort'>Merge sort</option>
+              <option value='bitonic_mergesort'>Bitonic mergesort</option>
+              <option value='introsort'>Introsort</option>
+              <!--<option value='radixsort'>Radixsort</option>
+              <option value='stoogesort'>Stoogesort</option>-->
+            </select>
+          </div>
+          <div class='form-group'>
+            <label for='#init-select'>Kezdeti tömb </label>
+            <select class='form-control' id='init-select'>
+              <option value='random'>Random</option>
+              <option value='sorted'>Rendezett</option>
+              <option value='reversed'>Fordított</option>
+            </select>
+          </div>
+          <div class='form-group' id='pivot-select-div'>
+            <label for='#pivot-select'>Tengely helye</label>
+            <select class='form-control' id='pivot-select'>
+              <option value='random'>Random</option>
+              <option value='first'>Első</option>
+              <option value='middle'>Közép</option>
+              <option value='last'>Utolsó</option>
+              <option value='median3'>A három számtani közepe</option>
+            </select>
+          </div>
+          <div class='form-group'>
+            <label for='#interval'>Időintervallum (ms)</label>
+            <input id='interval' class='form-control' type='number' value="20"/>
+          </div>
+          <p class='text-muted'>
+            Az összehasonlítás <span class='compare'>Kék</span>,
+            <br>
+            A csere <span class='swap'>Piros</span>.
+          </p>
+          <div class='text-center'>
+            <button class='btn btn-lg btn-primary' id='start-btn'>Indítás</button>
+          </div>
+        </div>
+        <div class='col-xs-9' id='canvas-div'>
+          <canvas width="800px" height="600px" id="main-canvas">
+        </div>
+      </div>
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-50623594-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script>
+      $(function() {
+        var aa = null;
+
+        var resize_canvas = function() {
+          $('#main-canvas').width($('#canvas-div').width());
+        }
+        resize_canvas();
+        $(window).resize(resize_canvas);
+
+        var update_pivot_select = function() {
+          var algo = $('#algo-select').val();
+          var pivot_algo = sorting.is_pivot_algo(algo);
+          $('#pivot-select').prop('disabled', !pivot_algo);
+          $('#pivot-select-div').toggleClass('hidden', !pivot_algo);
+        }
+        update_pivot_select();
+        $('#algo-select').change(update_pivot_select);
+
+        $('#start-btn').click(function() {
+          if (aa !== null) aa.cancel();
+
+          var n = parseInt($('#array-size').val());
+          var interval = parseInt($('#interval').val());
+          var algo = $('#algo-select').val();
+          var pivot_type = $('#pivot-select').val();
+          var sort_fn = sorting.get_sort_fn(algo, pivot_type);
+
+          if (algo === 'bitonic_mergesort') {
+            // Round up to the nearest power of 2
+            var n2 = 1;
+            while (n2 < n) n2 *= 2;
+            $('#array-size').val(n2);
+            n = n2;
+          }
+
+          var ary = [];
+          for (var i = 0; i < n; i++) {
+            ary.push(Math.random() - 0.5);
+          }
+          var init = $('#init-select').val();
+          if (init === 'sorted') {
+            ary.sort(function(a, b) { return a - b; });
+          } else if (init === 'reversed') {
+            ary.sort(function(a, b) {return b - a; });
+          }
+
+          var canvas = document.getElementById('main-canvas');
+          aa = new sorting.AnimatedArray(ary, canvas, interval);
+          sort_fn(aa);
+        });
+      });
+    </script>
+  </body>
+</html>
