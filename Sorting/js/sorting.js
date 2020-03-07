@@ -489,8 +489,8 @@ var sorting = (function() {
     'mergesort': mergesort,
     'introsort': introsort,
     'bitonic_mergesort': bitonic_mergesort,
-    'radixsort': radixsort,
-    'stoogesort' : stoogesort,
+    //'radixsort': radixsort,
+    //'stoogesort' : stoogesort,
   }
 
   function is_pivot_algo(algo) {
