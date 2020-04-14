@@ -33,6 +33,76 @@
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
+     stat: 'food',
+     value: -30,
+     text: 'A mosómedvék ellopták az ételedet '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'food',
+     value: -20,
+     text: 'Megromlott az ételed! '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'crew',
+     value: -5,
+     text: 'A csapatodra esett egy fa! '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'oxen',
+     value: -4,
+     text: 'Beestek az ökreid a mocsárba! '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'oxen',
+     value: -2,
+     text: 'Elszabadultak az ökreid! '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'firepower',
+     value: -4,
+     text: 'Eláztak a fegyvereid! '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'crew',
+     value: -4,
+     text: 'Megtámadtak a farkasok! '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'money',
+     value: -100,
+     text: 'Elitadd a pénzedet!'
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'money',
+     value: -30,
+     text: 'Leesett a karavánról a zsákmányod '
+   },
+  {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'firepower',
+     value: -3,
+     text: 'Felrobbantak a lőporos hordóid! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
      stat: 'oxen',
      value: -1,
      text: 'Ökör betegség. Veszteség: '
@@ -144,23 +214,23 @@
      text: 'A csempészek jó dolgokat árulnak!',
      products: [{
          item: 'étel',
-         qty: 20,
-         price: 60
+         qty: 30,
+         price: 10
        },
        {
          item: 'ökör',
-         qty: 1,
-         price: 300
+         qty: 3,
+         price: 50
        },
        {
          item: 'tűzerő',
-         qty: 2,
-         price: 30
+         qty: 7,
+         price: 20
        },
        {
          item: 'csapattag',
-         qty: 5,
-         price: 60
+         qty: 10,
+         price: 30
        }
      ]
    },
@@ -172,12 +242,17 @@
    {
      type: 'ATTACK',
      notification: 'negative',
-     text: 'A banditák támadnak!'
+     text: 'A sheriffel találkoztál!'
    },
    {
      type: 'ATTACK',
      notification: 'negative',
-     text: 'A banditák támadnak!'
+     text: 'Megtámadtak a farkasok!'
+   },
+   {
+     type: 'GOOD',
+     notification: 'positive',
+     text: 'Találkoztál egy rejtélyes öregúrral!'
    }
  ];
 
@@ -213,8 +288,16 @@
 
      //prepare event
      this.attackEvent(eventData);
+///////////////////////////////////////////////////////////////
+   } else if(eventData.type == 'GOOD') {
+     this.game.pauseJourney();
+     this.ui.notify(eventData.text, eventData.notification)
+     this.goodEvent(eventData);
    }
  };
+
+////////////////////////////////////////////////////////////////
+
 
  OregonH.Event.stateChangeEvent = function (eventData) {
    //can't have negative quantities
@@ -248,6 +331,16 @@
 
    this.ui.showShop(products);
  };
+
+//////////////////////////////////////////////////////////////////
+
+OregonH.Event.goodEvent = function (eventData) {
+  var food = Math.round(0.7 + 0.6 * Math.random() * OregonH.FOOD_AVG);
+
+  this.ui.showGood(food);
+};
+
+//////////////////////////////////////////////////////////////////
 
  //prepare an attack event
  OregonH.Event.attackEvent = function (eventData) {
@@ -446,6 +539,50 @@
    }
  };
 
+OregonH.UI.showGood = function (food) {
+  var attackDiv = document.getElementById('good');
+  attackDiv.classList.remove('hidden');
+
+  this.food = food;
+
+  document.getElementById('good-description').innerHTML = 'Ételed: ' + food;
+
+  //init once
+  if (!this.attackInitiated) {
+
+    //fight
+    document.getElementById('accept').addEventListener('click', this.accept.bind(this));
+
+    //run away
+    document.getElementById('decline').addEventListener('click', this.decline.bind(this));
+
+    this.attackInitiated = true;
+  }
+};
+
+//good
+OregonH.UI.accept = function() {
+  var food = this.food;
+
+  var gotFood = Math.ceil(Math.max(0, food * 2 * Math.random() - this.caravan.food));
+
+  this.caravan.food += gotFood;
+  this.notify('Az öregúr adott neked '+ gotFood  + ' ételt!', 'positive');
+
+  document.getElementById('good').classList.add('hidden');
+  this.game.resumeJourney();
+};
+
+OregonH.UI.decline = function() {
+
+  this.notify('nem fogadtad el az öregúr ajánlatát!', 'neutral');
+  document.getElementById('decline').removeEventListener('click');
+
+  //resume journey
+  document.getElementById('good').classList.add('hidden');
+  this.game.resumeJourney();
+};
+
  //fight
  OregonH.UI.fight = function () {
 
@@ -510,6 +647,7 @@
  OregonH.EVENT_PROBABILITY = 0.15;
  OregonH.ENEMY_FIREPOWER_AVG = 5;
  OregonH.ENEMY_GOLD_AVG = 50;
+ OregonH.FOOD_AVG = 37;
 
  OregonH.Game = {};
 

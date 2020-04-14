@@ -2,7 +2,7 @@ html {
 height: 100%;
 }
 .btn {
-    background-color: #FF8F00;
+    background-color: brown;
     border: none;
     border-radius:28px;
     color: black;
@@ -14,6 +14,8 @@ height: 100%;
     margin: 4px 2px;
     cursor: pointer;
     font-weight: bold;
+    color:gold;
+    border-style: inset;
 }
 .back{
     position: relative;
@@ -26,7 +28,7 @@ margin: 0;
 border: 0;
 height: 100%;
 overflow: hidden;
-font-family: Courier;
+font-family: 'Girassol',cursive;
 }
 
 .hidden {
@@ -37,7 +39,7 @@ div.stat {
     float: left;
     border-style: inset;
     font-size: 20px;
-      font-weight: bold;
+    font-weight: bold;
     background: brown;
 }
 
@@ -119,21 +121,33 @@ margin: 10px;
 }
 
 #trees {
+position: fixed;/*
+top: 500px;
+right: 100px;*/
+bottom:0;
+right: 0;
 width: 100%;
 image-rendering: pixelated;
+z-index: 0;
 }
 
 #caravan {
-position: absolute;
-bottom: 30px;
+position: fixed;
+width: 153px;
+bottom: 55px;
 left: 0;
+image-rendering: pixelated;
+z-index: 1;
 }
 
 #stats-area {
-background-color: white;
+border-style: inset;
+border: solid brown;
+background-color: gold;
+color: gold;
 float: left;
-height: 250px;
-width: 200px;
+height: 360px;
+width: 300px;
 margin: 10px;
 padding: 10px;
 font-size: 14px;
@@ -144,56 +158,83 @@ float: right;
 }
 
 #updates-area {
-background-color: white;
+border-style: inset;
+border: solid brown;
+background-color: gold;
 float: left;
-width: 350px;
+width: 360px;
 margin: 10px;
-height: 300px;
+height: 360px;
 padding: 10px;
 font-size: 13px;
 overflow-y: scroll;
 }
 
 .update-positive {
+font-size: 20px;
 color: #669966;
 }
 
 .update-negative {
+font-size: 20px;
 color: red;
 }
 
 .update-neutral {
+font-size: 20px;
 color: #90908F;
+}
+.update-gold {
+font-size: 20px;
 }
 
 #shop {
+position: relative;
+border: solid brown;
+border-style: inset;
 float: left;
-background-color: white;
+background-color: gold;
 margin: 10px;
 padding: 10px;
-height: 90px;
+height: 360px;
 width: 350px;
 }
 
 .product {
+border-style: inset;
+background-color: brown;
 float: left;
 margin: 5px;
 padding: 2px;
-border: 1px solid black;
-font-size: 12px;
+font-size: 15px;
+font-weight: bold;
 }
 
 #shop button {
+position: absolute;
 clear: both;
 float: left;
+bottom: 0;
+left:0;
 margin: 5px;
 }
 
 #attack {
+border-style: inset;
 float: left;
-background-color: white;
+background-color: gold;
 margin: 10px;
 padding: 10px;
-height: 100px;
-width: 250px;
+height: 80px;
+width: 260px;
+}
+
+#good {
+    border-style: inset;
+    float: left;
+    background-color: gold;
+    margin: 10px;
+    padding: 10px;
+    height: 80px;
+    width: 260px;
 }
