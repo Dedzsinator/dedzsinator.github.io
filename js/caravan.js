@@ -5,119 +5,272 @@
  OregonH.Event.eventTypes = [{
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'crew',
+     stat: 'étel',
      value: -3,
      text: 'Megromlott az étel. Veszteség: '
+   },
+
+   //?-----------------------------------------------------------------------?//
+
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'ökör',
+     value: 3,
+     text: 'Új ökrök születtek a Caravánban! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'ökör',
+     value: 1,
+     text: 'Találtál egy elkóborolt ökröt! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'étel',
+     value: 30,
+     text: 'Találtál egy nemrég óta halott szarvast! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'étel',
+     value: 20,
+     text: 'Elhagyott madártojásokra bukkantál'
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'étel',
+     value: 10,
+     text: 'A kocsi kereke megakadt egy ehető gyökérben! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'étel',
+     value: 10,
+     text: 'Mézet találtál az egyik fán! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'pénz',
+     value: 50,
+     text: 'Észrevettél egy csillogó követ a fa alatt! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'pénz',
+     value: 30,
+     text: 'Egy holttestet találtál az út szélén, pénzzel a zsebében! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'tűzerő',
+     value: 3,
+     text: 'Az út szélén áll egy elhagyott kocsi tele puskaporral! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'tűzerő',
+     value: 2,
+     text: 'Egy üres táborban találtál fegyvereket és lőszert! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'tűzerő',
+     value: 3,
+     text: 'Egy lőszereskocsiról leesett egy láda fegyver! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'csapattag',
+     value: 5,
+     text: 'Találtál egy csapat túlélőt az erdőben! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'csapattag',
+     value: 6,
+     text: 'Vándorok csatlakoztak a Caravánodhoz! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'csapattag',
+     value: 4,
+     text: 'Sebesült katonák csatlakoztak a csapatodhoz! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'folyadék',
+     value: 30,
+     text: 'Egy forráshoz értél! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'folyadék',
+     value: 20,
+     text: 'Találtál az erdőben egy kutat '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'folyadék',
+     value: 10,
+     text: 'Elkezdett esni az eső! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'positive',
+     stat: 'folyadék',
+     value: 15,
+     text: 'Találtál egy hordó friss vizet! '
    },
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'crew',
+     stat: 'folyadék',
+     value: -20,
+     text: 'A vízkészleted megfertőződött! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'folyadék',
+     value: 15,
+     text: 'Egy vizeshordó leesett a kocsiról! '
+   },
+   {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'folyadék',
+     value: 30,
+     text: 'Szárazság! A vízkészleted alaposan megcsappant! '
+   },
+   //?-----------------------------------------------------------------------?//
+
+
+   {
+     type: 'STAT-CHANGE',
+     notification: 'negative',
+     stat: 'csapattag',
      value: -4,
      text: 'Fertőzés veszély. Veszteség: '
    },
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'food',
+     stat: 'étel',
      value: -10,
      text: 'Féreg fertőzés. Elvesztett élelem: '
    },
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'money',
+     stat: 'pénz',
      value: -50,
      text: 'Megloptak a zsebtolvajok $'
    },
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'food',
+     stat: 'étel',
      value: -30,
      text: 'A mosómedvék ellopták az ételedet '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'food',
+     stat: 'étel',
      value: -20,
      text: 'Megromlott az ételed! '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'crew',
+     stat: 'csapattag',
      value: -5,
      text: 'A csapatodra esett egy fa! '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'oxen',
+     stat: 'ökör',
      value: -4,
      text: 'Beestek az ökreid a mocsárba! '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'oxen',
+     stat: 'ökör',
      value: -2,
      text: 'Elszabadultak az ökreid! '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'firepower',
+     stat: 'tűzerő',
      value: -4,
      text: 'Eláztak a fegyvereid! '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'crew',
+     stat: 'csapattag',
      value: -4,
      text: 'Megtámadtak a farkasok! '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'money',
+     stat: 'pénz',
      value: -100,
      text: 'Elitadd a pénzedet!'
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'money',
+     stat: 'pénz',
      value: -30,
      text: 'Leesett a karavánról a zsákmányod '
    },
-  {
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'firepower',
+     stat: 'tűzerő',
      value: -3,
      text: 'Felrobbantak a lőporos hordóid! '
    },
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'oxen',
+     stat: 'ökör',
      value: -1,
      text: 'Ökör betegség. Veszteség: '
    },
    {
      type: 'STAT-CHANGE',
      notification: 'positive',
-     stat: 'food',
+     stat: 'étel',
      value: 20,
      text: 'Találtál vad bogyókat, megnövelte az ételt: '
    },
    {
      type: 'STAT-CHANGE',
      notification: 'positive',
-     stat: 'oxen',
+     stat: 'ökör',
      value: 1,
      text: 'Találtál egy vad ökröt, így van: '
    },
@@ -127,22 +280,22 @@
      notification: 'neutral',
      text: 'Találtál egy boltot!',
      products: [{
-         item: 'food',
+         item: 'étel',
          qty: 20,
          price: 50
        },
        {
-         item: 'oxen',
+         item: 'ökör',
          qty: 1,
          price: 200
        },
        {
-         item: 'firepower',
+         item: 'tűzerő',
          qty: 2,
          price: 50
        },
        {
-         item: 'crew',
+         item: 'csapattag',
          qty: 5,
          price: 80
        }
@@ -154,26 +307,26 @@
      notification: 'neutral',
      text: 'Találtál egy boltot!',
      products: [{
-         item: 'food',
-         alt: 'étel',
+         item: 'étel',
+         name: 'étel',
          qty: 20,
          price: 50
        },
        {
-         item: 'oxen',
-         alt: 'ökör',
+         item: 'ökör',
+         name: 'ökör',
          qty: 1,
          price: 200
        },
        {
-         item: 'firepower',
-         alt: 'tűzerő',
+         item: 'tűzerő',
+         name: 'tűzerő',
          qty: 2,
          price: 50
        },
        {
-         item: 'crew',
-         alt: 'csapattag',
+         item: 'csapattag',
+         name: 'csapattag',
          qty: 5,
          price: 80
        }
@@ -184,26 +337,26 @@
      notification: 'neutral',
      text: 'Találtál egy boltot!',
      products: [{
-         item: 'food',
-         alt: 'étel',
+         item: 'étel',
+         name: 'étel',
          qty: 30,
          price: 50
        },
        {
-         item: 'oxen',
-         alt: 'ökör',
+         item: 'ökör',
+         name: 'ökör',
          qty: 1,
          price: 200
        },
        {
-         item: 'firepower',
-         alt: 'tűzerő',
+         item: 'tűzerő',
+         name: 'tűzerő',
          qty: 2,
          price: 20
        },
        {
-         item: 'crew',
-         alt: 'csapattag',
+         item: 'csapattag',
+         name: 'csapattag',
          qty: 10,
          price: 80
        }
@@ -214,26 +367,26 @@
      notification: 'neutral',
      text: 'A csempészek jó dolgokat árulnak!',
      products: [{
-         item: 'food',
-         alt: 'étel',
+         item: 'étel',
+         name: 'étel',
          qty: 30,
          price: 10
        },
        {
-         item: 'oxen',
-         alt: 'ökör',
+         item: 'ökör',
+         name: 'ökör',
          qty: 3,
          price: 50
        },
        {
-         item: 'firepower',
-         alt: 'tűzerő',
+         item: 'tűzerő',
+         name: 'tűzerő',
          qty: 7,
          price: 20
        },
        {
-         item: 'crew',
-         alt: 'csapattag',
+         item: 'csapattag',
+         name: 'csapattag',
          qty: 10,
          price: 30
        }
@@ -293,15 +446,15 @@
 
      //prepare event
      this.attackEvent(eventData);
-///////////////////////////////////////////////////////////////
-   } else if(eventData.type == 'GOOD') {
+     ///////////////////////////////////////////////////////////////
+   } else if (eventData.type == 'GOOD') {
      this.game.pauseJourney();
      this.ui.notify(eventData.text, eventData.notification)
      this.goodEvent(eventData);
    }
  };
 
-////////////////////////////////////////////////////////////////
+ ////////////////////////////////////////////////////////////////
 
 
  OregonH.Event.stateChangeEvent = function (eventData) {
@@ -337,22 +490,22 @@
    this.ui.showShop(products);
  };
 
-//////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////
 
-OregonH.Event.goodEvent = function (eventData) {
-  var food = Math.round(0.7 + 0.6 * Math.random() * OregonH.FOOD_AVG);
+ OregonH.Event.goodEvent = function (eventData) {
+   var étel = Math.round(0.7 + 0.6 * Math.random() * OregonH.FOOD_AVG);
 
-  this.ui.showGood(food);
-};
+   this.ui.showGood(étel);
+ };
 
-//////////////////////////////////////////////////////////////////
+ //////////////////////////////////////////////////////////////////
 
  //prepare an attack event
  OregonH.Event.attackEvent = function (eventData) {
-   var firepower = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_FIREPOWER_AVG);
+   var tűzerő = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_FIREPOWER_AVG);
    var gold = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_GOLD_AVG);
 
-   this.ui.showAttack(firepower, gold);
+   this.ui.showAttack(tűzerő, gold);
  };
  var OregonH = OregonH || {};
 
@@ -361,11 +514,12 @@ OregonH.Event.goodEvent = function (eventData) {
  OregonH.Caravan.init = function (stats) {
    this.day = stats.day;
    this.distance = stats.distance;
-   this.crew = stats.crew;
-   this.food = stats.food;
-   this.oxen = stats.oxen;
-   this.money = stats.money;
-   this.firepower = stats.firepower;
+   this.csapattag = stats.csapattag;
+   this.étel = stats.étel;
+   this.folyadék = stats.folyadék;
+   this.ökör = stats.ökör;
+   this.pénz = stats.pénz;
+   this.tűzerő = stats.tűzerő;
  };
 
  //update weight and capacity
@@ -374,15 +528,15 @@ OregonH.Event.goodEvent = function (eventData) {
    var droppedGuns = 0;
 
    //how much can the caravan carry
-   this.capacity = this.oxen * OregonH.WEIGHT_PER_OX + this.crew * OregonH.WEIGHT_PER_PERSON;
+   this.capacity = this.ökör * OregonH.WEIGHT_PER_OX + this.csapattag * OregonH.WEIGHT_PER_PERSON;
 
    //how much weight do we currently have
-   this.weight = this.food * OregonH.FOOD_WEIGHT + this.firepower * OregonH.FIREPOWER_WEIGHT;
+   this.weight = this.étel * OregonH.FOOD_WEIGHT + this.tűzerő * OregonH.FIREPOWER_WEIGHT;
 
    //drop things behind if it's too much weight
    //assume guns get dropped before food
-   while (this.firepower && this.capacity <= this.weight) {
-     this.firepower--;
+   while (this.tűzerő && this.capacity <= this.weight) {
+     this.tűzerő--;
      this.weight -= OregonH.FIREPOWER_WEIGHT;
      droppedGuns++;
    }
@@ -391,8 +545,8 @@ OregonH.Event.goodEvent = function (eventData) {
      this.ui.notify(+droppedGuns + ' fegyvered veszett oda!', 'negative');
    }
 
-   while (this.food && this.capacity <= this.weight) {
-     this.food--;
+   while (this.étel && this.capacity <= this.weight) {
+     this.étel--;
      this.weight -= OregonH.FOOD_WEIGHT;
      droppedFood++;
    }
@@ -412,10 +566,10 @@ OregonH.Event.goodEvent = function (eventData) {
 
  //food consumption
  OregonH.Caravan.consumeFood = function () {
-   this.food -= this.crew * OregonH.FOOD_PER_PERSON;
+   this.étel -= this.csapattag * OregonH.FOOD_PER_PERSON;
 
-   if (this.food < 0) {
-     this.food = 0;
+   if (this.étel < 0) {
+     this.étel = 0;
    }
  };
  var OregonH = OregonH || {};
@@ -432,12 +586,14 @@ OregonH.Event.goodEvent = function (eventData) {
    //modify the dom
    document.getElementById('stat-day').innerHTML = Math.ceil(this.caravan.day);
    document.getElementById('stat-distance').innerHTML = Math.floor(this.caravan.distance);
-   document.getElementById('stat-crew').innerHTML = this.caravan.crew;
-   document.getElementById('stat-oxen').innerHTML = this.caravan.oxen;
-   document.getElementById('stat-food').innerHTML = Math.ceil(this.caravan.food);
-   document.getElementById('stat-money').innerHTML = this.caravan.money;
-   document.getElementById('stat-firepower').innerHTML = this.caravan.firepower;
+   document.getElementById('stat-crew').innerHTML = this.caravan.csapattag;
+   document.getElementById('stat-oxen').innerHTML = this.caravan.ökör;
+   document.getElementById('stat-food').innerHTML = Math.ceil(this.caravan.étel);
+   document.getElementById('stat-liquid').innerHTML = Math.ceil(this.caravan.folyadék);
+   document.getElementById('stat-money').innerHTML = this.caravan.pénz;
+   document.getElementById('stat-firepower').innerHTML = this.caravan.tűzerő;
    document.getElementById('stat-weight').innerHTML = Math.ceil(this.caravan.weight) + '/' + this.caravan.capacity;
+
 
    //update caravan position
    document.getElementById('caravan').style.left = (380 * this.caravan.distance / OregonH.FINAL_DISTANCE) + 'px';
@@ -485,9 +641,11 @@ OregonH.Event.goodEvent = function (eventData) {
    prodsDiv.innerHTML = '';
 
    //show products
+   var list = ["csapattag", "ökör", "étel", "folyadék", "pénz", "tűzerő"];
    var product;
    for (var i = 0; i < products.length; i++) {
      product = products[i];
+     console.log(product.item);
      prodsDiv.innerHTML += '<div class="product" data-qty="' + product.qty + '" data-item="' + product.item + '" data-price="' + product.price + '">' + product.qty + ' ' + product.item + ' - $' + product.price + '</div>';
    }
 
@@ -498,12 +656,12 @@ OregonH.Event.goodEvent = function (eventData) {
  //buy product
  OregonH.UI.buyProduct = function (product) {
    //check we can afford it
-   if (product.price > this.caravan.money) {
+   if (product.price > this.caravan.pénz) {
      OregonH.UI.notify('Nincs elég pénzed!', 'negative');
      return false;
    }
 
-   this.caravan.money -= product.price;
+   this.caravan.pénz -= product.price;
 
    this.caravan[product.item] += +product.qty;
 
@@ -520,16 +678,16 @@ OregonH.Event.goodEvent = function (eventData) {
  };
 
  //show attack
- OregonH.UI.showAttack = function (firepower, gold) {
+ OregonH.UI.showAttack = function (tűzerő, gold) {
    var attackDiv = document.getElementById('attack');
    attackDiv.classList.remove('hidden');
 
    //keep properties
-   this.firepower = firepower;
+   tűzerő = this.caravan.tűzerő;
    this.gold = gold;
 
-   //show firepower
-   document.getElementById('attack-description').innerHTML = 'Tűzerőd: ' + firepower;
+   //show tűzerő
+   document.getElementById('attack-description').innerHTML = 'Tűzerőd: ' + tűzerő;
 
    //init once
    if (!this.attackInitiated) {
@@ -544,65 +702,64 @@ OregonH.Event.goodEvent = function (eventData) {
    }
  };
 
-OregonH.UI.showGood = function (food) {
-  var attackDiv = document.getElementById('good');
-  attackDiv.classList.remove('hidden');
+ OregonH.UI.showGood = function (étel) {
+   var attackDiv = document.getElementById('good');
+   attackDiv.classList.remove('hidden');
 
-  this.caravan.food = food;
+   var étel = Math.round(this.caravan.étel);
 
-  document.getElementById('good-description').innerHTML = 'Ételed: ' + food;
+   document.getElementById('good-description').innerHTML = 'Ételed: ' + étel;
 
-  //init once
-  if (!this.attackInitiated) {
+   //init once
+   if (!this.attackInitiated) {
 
-    //fight
-    document.getElementById('accept').addEventListener('click', this.accept.bind(this));
+     //fight
+     document.getElementById('accept').addEventListener('click', this.accept.bind(this));
 
-    //run away
-    document.getElementById('decline').addEventListener('click', this.decline.bind(this));
+     //run away
+     document.getElementById('decline').addEventListener('click', this.decline.bind(this));
 
-    this.attackInitiated = true;
-  }
-};
+     this.attackInitiated = true;
+   }
+ };
 
-//good
-OregonH.UI.accept = function() {
-  var food = this.food;
+ //good
+ OregonH.UI.accept = function () {
 
-  var gotFood = Math.floor((Math.random() * 20) + 1);
-  food += gotFood;
-  this.notify('Az öregúr adott neked '+ gotFood  + ' ételt!', 'positive');
+   var gotFood = Math.floor((Math.random() * 20) + 1);
+   this.caravan.étel += gotFood;
+   this.notify('Az öregúr adott neked ' + gotFood + ' ételt!', 'positive');
 
-  document.getElementById('good').classList.add('hidden');
-  this.game.resumeJourney();
-};
+   document.getElementById('good').classList.add('hidden');
+   this.game.resumeJourney();
+ };
 
-OregonH.UI.decline = function() {
+ OregonH.UI.decline = function () {
 
-  this.notify('nem fogadtad el az öregúr ajánlatát!', 'neutral');
-  document.getElementById('decline').removeEventListener('click');
+   this.notify('nem fogadtad el az öregúr ajánlatát!', 'neutral');
+   document.getElementById('decline').removeEventListener('click');
 
-  //resume journey
-  document.getElementById('good').classList.add('hidden');
-  this.game.resumeJourney();
-};
+   //resume journey
+   document.getElementById('good').classList.add('hidden');
+   this.game.resumeJourney();
+ };
 
  //fight
  OregonH.UI.fight = function () {
 
-   var firepower = this.firepower;
-   var gold = this.gold;
+   var tűzerő = this.caravan.tűzerő;
+   gold = this.gold;
 
-   var damage = Math.ceil(Math.max(0, firepower * 2 * Math.random() - this.caravan.firepower));
+   var damage = Math.ceil(Math.max(0, tűzerő * 2 * Math.random() - this.caravan.tűzerő));
 
    //check there are survivors
-   if (damage < this.caravan.crew) {
-     this.caravan.crew -= damage;
-     this.caravan.money += gold;
+   if (damage < this.caravan.csapattag) {
+     this.caravan.csapattag -= damage;
+     this.caravan.pénz += gold;
      this.notify(' megölték ' + damage + ' emberedet a harcban!', 'negative');
      this.notify('Találtál $' + gold, 'gold');
    } else {
-     this.caravan.crew = 0;
+     this.caravan.csapattag = 0;
      this.notify('Mindenki meghalt a csatában! Vesztettél!', 'negative');
    }
 
@@ -614,21 +771,18 @@ OregonH.UI.decline = function() {
  //runing away from enemy
  OregonH.UI.runaway = function () {
 
-   var firepower = this.firepower;
+   var tűzerő = this.tűzerő;
 
-   var damage = Math.ceil(Math.max(0, firepower * Math.random() / 2));
+   var damage = Math.ceil(Math.max(0, tűzerő * Math.random() / 2));
 
    //check there are survivors
-   if (damage < this.caravan.crew) {
-     this.caravan.crew -= damage;
+   if (damage < this.caravan.csapattag) {
+     this.caravan.csapattag -= damage;
      this.notify(damage + ' A menekülő embereidet megölték!', 'negative');
    } else {
-     this.caravan.crew = 0;
+     this.caravan.csapattag = 0;
      this.notify('Mindenki meghalt a menekülésben!', 'negative');
    }
-
-   //remove event listener
-   document.getElementById('runaway').removeEventListener('click');
 
    //resume journey
    document.getElementById('attack').classList.add('hidden');
@@ -638,14 +792,15 @@ OregonH.UI.decline = function() {
  var OregonH = OregonH || {};
 
  //constants
- OregonH.WEIGHT_PER_OX = 20;
+ OregonH.WEIGHT_PER_OX = 23;
  OregonH.WEIGHT_PER_PERSON = 2;
  OregonH.FOOD_WEIGHT = 0.6;
+ OregonH.LIQUID_WEIGHT = 0.5;
  OregonH.FIREPOWER_WEIGHT = 5;
  OregonH.GAME_SPEED = 800;
  OregonH.DAY_PER_STEP = 0.2;
  OregonH.FOOD_PER_PERSON = 0.02;
- OregonH.WATER_PER_PERSON = 0.01;
+ OregonH.WATER_PER_PERSON = 0.01; //! lehet kell nagyobbitani (0.05)
  OregonH.FULL_SPEED = 5;
  OregonH.SLOW_SPEED = 3;
  OregonH.FINAL_DISTANCE = 1000;
@@ -670,11 +825,12 @@ OregonH.UI.decline = function() {
    this.caravan.init({
      day: 0,
      distance: 0,
-     crew: 30, //!!! Values HERE!!!
-     food: 80,
-     oxen: 2,
-     money: 300,
-     firepower: 2
+     csapattag: 30, //!!! Values HERE!!!
+     étel: 80,
+     folyadék: 100,
+     ökör: 2,
+     pénz: 300,
+     tűzerő: 2
    });
 
    //pass references
@@ -698,11 +854,12 @@ OregonH.UI.decline = function() {
    this.gameActive = true;
    this.previousTime = null;
    this.ui.notify('Egy új kaland veszi kezdetét!', 'positive');
-   console.log(this.caravan.crew);
-   console.log(this.caravan.oxen);
-   console.log(this.caravan.food);
-   console.log(this.caravan.money);
-   console.log(this.caravan.firepower);
+   console.log(this.caravan.csapattag);
+   console.log(this.caravan.ökör);
+   console.log(this.caravan.étel);
+   console.log(this.caravan.folyadék);
+   console.log(this.caravan.pénz);
+   console.log(this.caravan.tűzerő);
 
    this.step();
  };
@@ -734,10 +891,10 @@ OregonH.UI.decline = function() {
    //day update
    this.caravan.day += OregonH.DAY_PER_STEP;
 
-   //food consumption
+   //étel consumption
    this.caravan.consumeFood();
 
-   if (this.caravan.food === 0) {
+   if (this.caravan.étel === 0) {
      this.ui.notify('A karavánod éhenhalt!', 'negative');
      this.gameActive = false;
      return;
@@ -753,8 +910,8 @@ OregonH.UI.decline = function() {
    this.ui.refreshStats();
 
    //check if everyone died
-   if (this.caravan.crew <= 0) {
-     this.caravan.crew = 0;
+   if (this.caravan.csapattag <= 0) {
+     this.caravan.csapattag = 0;
      this.ui.notify('Mindenki meghalt!', 'negative');
      this.gameActive = false;
      return;
