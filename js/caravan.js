@@ -117,13 +117,6 @@
    {
      type: 'STAT-CHANGE',
      notification: 'positive',
-     stat: 'food',
-     value: 20,
-     text: 'Találtál vad bogyókat, megnövelte az ételt: '
-   },
-   {
-     type: 'STAT-CHANGE',
-     notification: 'positive',
      stat: 'oxen',
      value: 1,
      text: 'Találtál egy vad ökröt, így van: '
@@ -134,22 +127,22 @@
      notification: 'neutral',
      text: 'Találtál egy boltot!',
      products: [{
-         item: 'étel',
+         item: 'food',
          qty: 20,
          price: 50
        },
        {
-         item: 'ökör',
+         item: 'oxen',
          qty: 1,
          price: 200
        },
        {
-         item: 'tűzerő',
+         item: 'firepower',
          qty: 2,
          price: 50
        },
        {
-         item: 'csapattag',
+         item: 'crew',
          qty: 5,
          price: 80
        }
@@ -161,22 +154,26 @@
      notification: 'neutral',
      text: 'Találtál egy boltot!',
      products: [{
-         item: 'étel',
+         item: 'food',
+         alt: 'étel',
          qty: 20,
          price: 50
        },
        {
-         item: 'ökör',
+         item: 'oxen',
+         alt: 'ökör',
          qty: 1,
          price: 200
        },
        {
-         item: 'tűzerő',
+         item: 'firepower',
+         alt: 'tűzerő',
          qty: 2,
          price: 50
        },
        {
-         item: 'csapattag',
+         item: 'crew',
+         alt: 'csapattag',
          qty: 5,
          price: 80
        }
@@ -187,22 +184,26 @@
      notification: 'neutral',
      text: 'Találtál egy boltot!',
      products: [{
-         item: 'étel',
+         item: 'food',
+         alt: 'étel',
          qty: 30,
          price: 50
        },
        {
-         item: 'ökör',
+         item: 'oxen',
+         alt: 'ökör',
          qty: 1,
          price: 200
        },
        {
-         item: 'tűzerő',
+         item: 'firepower',
+         alt: 'tűzerő',
          qty: 2,
          price: 20
        },
        {
-         item: 'csapattag',
+         item: 'crew',
+         alt: 'csapattag',
          qty: 10,
          price: 80
        }
@@ -213,22 +214,26 @@
      notification: 'neutral',
      text: 'A csempészek jó dolgokat árulnak!',
      products: [{
-         item: 'étel',
+         item: 'food',
+         alt: 'étel',
          qty: 30,
          price: 10
        },
        {
-         item: 'ökör',
+         item: 'oxen',
+         alt: 'ökör',
          qty: 3,
          price: 50
        },
        {
-         item: 'tűzerő',
+         item: 'firepower',
+         alt: 'tűzerő',
          qty: 7,
          price: 20
        },
        {
-         item: 'csapattag',
+         item: 'crew',
+         alt: 'csapattag',
          qty: 10,
          price: 30
        }
@@ -493,14 +498,14 @@ OregonH.Event.goodEvent = function (eventData) {
  //buy product
  OregonH.UI.buyProduct = function (product) {
    //check we can afford it
-   if (product.price > OregonH.UI.caravan.money) {
+   if (product.price > this.caravan.money) {
      OregonH.UI.notify('Nincs elég pénzed!', 'negative');
      return false;
    }
 
-   OregonH.UI.caravan.money -= product.price;
+   this.caravan.money -= product.price;
 
-   OregonH.UI.caravan[product.item] += +product.qty;
+   this.caravan[product.item] += +product.qty;
 
    OregonH.UI.notify('Vásároltál ' + product.qty + ' x ' + product.item, 'positive');
 
@@ -543,7 +548,7 @@ OregonH.UI.showGood = function (food) {
   var attackDiv = document.getElementById('good');
   attackDiv.classList.remove('hidden');
 
-  this.food = food;
+  this.caravan.food = food;
 
   document.getElementById('good-description').innerHTML = 'Ételed: ' + food;
 
@@ -564,9 +569,8 @@ OregonH.UI.showGood = function (food) {
 OregonH.UI.accept = function() {
   var food = this.food;
 
-  var gotFood = Math.ceil(Math.max(0, food * 2 * Math.random() - this.caravan.food));
-
-  this.caravan.food += gotFood;
+  var gotFood = Math.floor((Math.random() * 20) + 1);
+  food += gotFood;
   this.notify('Az öregúr adott neked '+ gotFood  + ' ételt!', 'positive');
 
   document.getElementById('good').classList.add('hidden');
@@ -641,6 +645,7 @@ OregonH.UI.decline = function() {
  OregonH.GAME_SPEED = 800;
  OregonH.DAY_PER_STEP = 0.2;
  OregonH.FOOD_PER_PERSON = 0.02;
+ OregonH.WATER_PER_PERSON = 0.01;
  OregonH.FULL_SPEED = 5;
  OregonH.SLOW_SPEED = 3;
  OregonH.FINAL_DISTANCE = 1000;
@@ -693,6 +698,11 @@ OregonH.UI.decline = function() {
    this.gameActive = true;
    this.previousTime = null;
    this.ui.notify('Egy új kaland veszi kezdetét!', 'positive');
+   console.log(this.caravan.crew);
+   console.log(this.caravan.oxen);
+   console.log(this.caravan.food);
+   console.log(this.caravan.money);
+   console.log(this.caravan.firepower);
 
    this.step();
  };
