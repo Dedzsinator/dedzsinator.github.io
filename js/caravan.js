@@ -425,7 +425,7 @@ var progress = document.querySelector('#progress');
 
 function initAudioPlayer() {
   audio = new Audio();
-  audio.src = "./audio/caravan/caravan.mp3"; //! C
+  audio.src = "../audio/caravan/caravan.mp3";
   volume.addEventListener('change', function(e) {
     audio.volume = e.currentTarget.value / 100;
   });
