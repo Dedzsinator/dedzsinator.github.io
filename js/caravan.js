@@ -1,4 +1,6 @@
  var OregonH = OregonH || {};
+var audio, playbtn, mutebtn, seek_bar;
+var progress = document.querySelector('#progress');
 
  OregonH.Event = {};
 
@@ -11,6 +13,13 @@
    },
 
    //?-----------------------------------------------------------------------?//
+
+   {
+    type: 'CHOICES',
+    notification: 'choice',
+
+    text: '',
+   },
 
    {
      type: 'STAT-CHANGE',
@@ -413,6 +422,42 @@
      text: 'Találkoztál egy rejtélyes öregúrral!'
    }
  ];
+
+function initAudioPlayer() {
+  audio = new Audio();
+  audio.src = "./audio/caravan/caravan.mp3"; //! C
+  volume.addEventListener('change', function(e) {
+    audio.volume = e.currentTarget.value / 100;
+  });
+  audio.loop = true; 
+  audio.play();
+  // Set object references
+  playbtn = document.getElementById("playpausebtn");
+  mutebtn = document.getElementById("mutebtn");
+  // Add Event Handling
+  playbtn.addEventListener("click", playPause);
+  //mutebtn.addEventListener("click", mute);
+  // Functions
+  function playPause() {
+    if (audio.paused) {
+      audio.play();
+      playbtn.style.background = "url(../img/caravan/volume.png) no-repeat";
+    } else {
+      audio.pause();
+      playbtn.style.background = "url(../img/caravan/mute_volume.png) no-repeat";
+    }
+  }
+
+  function mute() {
+    if (audio.muted) {
+      audio.muted = false;
+      mutebtn.style.background = "url(../img/caravan/volume.png) no-repeat";
+    } else {
+      audio.muted = true;
+      mutebtn.style.background = "url(../img/caravan/mute_volume.png) no-repeat";
+    }
+  }
+}
 
  OregonH.Event.generateEvent = function () {
    //pick random one
@@ -847,6 +892,7 @@
 
    //begin adventure!
    this.startJourney();
+   window.addEventListener("load", initAudioPlayer);
  };
 
  //start the journey and time starts running

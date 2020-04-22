@@ -19,11 +19,11 @@ height: 100%;
 }
 .back{
     position: relative;
-    top: -90px;
+    top: -160px;
 }
 
 .top {
-    height: 120px;
+    height: 160px;
 }
 
 body {
@@ -37,6 +37,69 @@ font-family: 'Girassol',cursive;
 
 .hidden {
 display: none;
+}
+
+.lower {
+    position: absolute;
+    top: 80px;
+    right: 180px;
+    width: 3%;
+    height: auto;
+    z-index: 1;
+}
+
+.title {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+}
+
+.higher {
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    width: 3%;
+  height: auto;
+}
+
+.volume {
+    position: absolute;
+    right: 55px;
+    top: 95px;
+    height: 15px;
+    z-index: 0;
+    -webkit-appearance: none;
+    background: #60400f;
+    outline: none;
+    opacity: 0.9;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.volume:hover {
+    opacity: 1;
+}
+
+.volume::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: gold;
+    cursor: pointer;
+}
+
+.pause {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 64px;
+    height: 64px;
+    background-size: cover;
+    border:none;
+    outline: none;
+    background: url(../img/caravan/volume.png);
 }
 
 div.stat {
@@ -125,30 +188,31 @@ background-color: magenta;
 }
 
 #progress-area {
-float: left;
-position: relative;
-width: 400px;
-margin: 10px;
+    float: left;
+    position: relative;
+    width: 400px;
+    margin: 10px;
 }
 
 #trees {
-position: fixed;/*
+    position: fixed;
+    /*
 top: 500px;
 right: 100px;*/
-bottom:0;
-right: 0;
-width: 100%;
-image-rendering: pixelated;
-z-index: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    image-rendering: pixelated;
+    z-index: 0;
 }
 
 #caravan {
-position: fixed;
-width: 153px;
-bottom: 55px;
-left: 0;
-image-rendering: pixelated;
-z-index: 1;
+    position: fixed;
+    width: 153px;
+    bottom: 55px;
+    left: 0;
+    image-rendering: pixelated;
+    z-index: 1;
 }
 
 #stats-area {
@@ -219,6 +283,7 @@ margin: 5px;
 padding: 2px;
 font-size: 15px;
 font-weight: bold;
+cursor: pointer; 
 }
 
 #shop button {
