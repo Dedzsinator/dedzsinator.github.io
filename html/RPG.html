@@ -7,10 +7,10 @@
   <title></title>
   <link href="https://fonts.googleapis.com/css?family=Girassol&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/caravan.css">
-      <title>Hunguy - Egy diák amatőr weboldala</title>
+  <title>Hunguy - Egy diák amatőr weboldala</title>
 
-      <!-- Favicon -->
-      <link rel="icon" href="../img/core-img/favicon.ico">
+  <!-- Favicon -->
+  <link rel="icon" href="../img/core-img/favicon.ico">
 </head>
 
 <body>
@@ -19,30 +19,134 @@
     <h3 style="text-align: center">A cél, hogy a caraván hazaérjen épségben!</h3> -->
     <img class="title" src="../img/caravan/title.png">
     <a href="../index.html" class="btn back" type="button">Vissza a Főoldalra</a>
-        <button class="pause" id="playpausebtn"></button>
-        <img class="lower" src="../img/caravan/lower_volume.png" />
-        <input class="volume" id="volume" type="range">
-        <img class="higher" src="../img/caravan/increase_volume.png" />
+    <button class="pause" id="playpausebtn"></button>
+    <img class="lower" src="../img/caravan/lower_volume.png" />
+    <input class="volume" id="volume" type="range">
+    <img class="higher" src="../img/caravan/increase_volume.png" />
   </div>
   <div id="home"></div>
   <div id="journey">
     <div id="stats-area">
-      <div class="stat">Nap<img src="../img/caravan/day.png" id="day"> <span id="stat-day" class="stat-value"></span></div>
+      <div class="stat">Nap<img src="../img/caravan/day.png" id="day"> <span id="stat-day" class="stat-value"></span>
+      </div>
       <div class="stat">Távolság <img src="../img/caravan/wheel.png" id="dist"> <span id="stat-distance"
           class="stat-value"></span></div>
       <div class="stat">Csapattagok <img src="../img/caravan/crew.png" id="crew"> <span id="stat-crew"
           class="stat-value"></span></div>
-      <div class="stat">Ökrök <img src="../img/caravan/ox.png" id="ox"> <span id="stat-oxen" class="stat-value"></span></div>
-      <div class="stat">Étel <img src="../img/caravan/food.png" id="food"> <span id="stat-food" class="stat-value"></span></div>
+      <div class="stat">Ökrök <img src="../img/caravan/ox.png" id="ox"> <span id="stat-oxen" class="stat-value"></span>
+      </div>
+      <div class="stat">Étel <img src="../img/caravan/food.png" id="food"> <span id="stat-food"
+          class="stat-value"></span></div>
       <div class="stat">Folyadék <img src="../img/caravan/liquid.png" id="liquid"> <span id="stat-liquid"
           class="stat-value"></span></div>
-      <div class="stat">Pénz <img src="../img/caravan/coin.png" id="coin"> <span id="stat-money" class="stat-value"></span></div>
+      <div class="stat">Pénz <img src="../img/caravan/coin.png" id="coin"> <span id="stat-money"
+          class="stat-value"></span></div>
       <div class="stat">Tűzerő <img src="../img/caravan/guns.png" id="fire"> <span id="stat-firepower"
           class="stat-value"></span></div>
       <div class="stat">Súly <img src="../img/caravan/heavy.png" id="heavy"> <span id="stat-weight"
           class="stat-value"></span><span id="stat-capacity" class="stat-value"></span></div>
-        </div>
-    <div class="updates-area" id="updates-area"></div>
+                <div id="inv-btn" class="hidden"></div> <!---class=hidden--->
+    </div>
+    <div class="updates-area" id="updates-area">
+    </div>
+    <div id="inventory" class="hidden">
+      <div class="picture">
+        <img src="../img/caravan/player.png">
+      </div>
+      <div class="empty" id="empty" style="background: url('../img/caravan/helmet.png'); background-size: cover;">
+      </div>
+      
+      <div class="empty" id="empty" style="background: url('../img/caravan/armor.png'); background-size: cover;">
+      </div>
+      
+      <div class="empty" id="empty" style="background: url('../img/caravan/boot.png'); background-size: cover;">
+      </div>
+      
+      <div class="empty" id="empty" style="background: url('../img/caravan/sword.png'); background-size: cover;">
+      </div>
+      
+      <div class="empty" id="empty" style="background: url('../img/caravan/sword.png'); background-size: cover;">
+      </div>
+      
+      <div class="empty" id="empty" style="background: url('../img/caravan/neklace.png'); background-size: cover;">
+      </div>
+      
+      <div class="empty" id="empty" style="background: url('../img/caravan/ring.png'); background-size: cover;">
+      </div>
+      
+      <div class="empty" id="empty" style="background: url('../img/caravan/belt.png'); background-size: cover;">
+      </div>
+      <div class="empty" id="empty">
+        <div class="fill" id="fill" draggable="true"> </div>
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+
+      <div class="empty" id="empty">
+      </div>
+    </div>
     <div id="shop" class="hidden">
       <div id="prods">
       </div>
@@ -58,8 +162,13 @@
       <button class="btn" id="accept">Elfogadás</button>
       <button class="btn" id="decline">Elutasítás</button>
     </div>
-    <div id="progress-area">
+    <div id="choice" class="hidden">
+      <div id="choice-description"></div>
+      <button class="btn" id="yes">Elfogadás</button>
+      <button class="btn" id="no">Elutasítás</button>
+    </div>
 
+    <div id="progress-area">
       <img id="caravan" src="../img/caravan/caravan.png" />
       <img id="trees" src="../img/caravan/road.png" />
     </div>

@@ -1,10 +1,11 @@
 html {
-height: 100%;
+    height: 100%;
 }
+
 .btn {
     background-color: brown;
     border: none;
-    border-radius:28px;
+    border-radius: 28px;
     color: black;
     padding: 10px 10px;
     text-align: center;
@@ -14,10 +15,11 @@ height: 100%;
     margin: 4px 2px;
     cursor: pointer;
     font-weight: bold;
-    color:gold;
+    color: gold;
     border-style: inset;
 }
-.back{
+
+.back {
     position: relative;
     top: -160px;
 }
@@ -27,16 +29,16 @@ height: 100%;
 }
 
 body {
-padding: 0;
-margin: 0;
-border: 0;
-height: 100%;
-overflow: hidden;
-font-family: 'Girassol',cursive;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Girassol', cursive;
 }
 
 .hidden {
-display: none;
+    display: none;
 }
 
 .lower {
@@ -59,7 +61,7 @@ display: none;
     top: 80px;
     right: 10px;
     width: 3%;
-  height: auto;
+    height: auto;
 }
 
 .volume {
@@ -97,7 +99,7 @@ display: none;
     width: 64px;
     height: 64px;
     background-size: cover;
-    border:none;
+    border: none;
     outline: none;
     background: url(../img/caravan/volume.png);
 }
@@ -175,16 +177,16 @@ div.stat {
 }
 
 #home {
-background-color: red;
+    background-color: red;
 }
 
 #journey {
-height: 100%;
-background-color: #5F9FFF;
+    height: 100%;
+    background-color: #5F9FFF;
 }
 
 #event {
-background-color: magenta;
+    background-color: magenta;
 }
 
 #progress-area {
@@ -216,93 +218,94 @@ right: 100px;*/
 }
 
 #stats-area {
-border-style: inset;
-border: solid brown;
-background-color: gold;
-color: gold;
-float: left;
-height: 433px;
-width: 300px;
-margin: 10px;
-padding: 10px;
-font-size: 14px;
+    border-style: inset;
+    border: solid brown;
+    background-color: gold;
+    color: gold;
+    float: left;
+    height: 433px;
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+    font-size: 14px;
 }
 
 .stat-value {
-float: right;
+    float: right;
 }
 
 #updates-area {
-border-style: inset;
-border: solid brown;
-background-color: gold;
-float: left;
-width: 360px;
-margin: 10px;
-height: 360px;
-padding: 10px;
-font-size: 13px;
-overflow-y: scroll;
+    border-style: inset;
+    border: solid brown;
+    background-color: gold;
+    float: left;
+    width: 360px;
+    margin: 10px;
+    height: 360px;
+    padding: 10px;
+    font-size: 13px;
+    overflow-y: scroll;
 }
 
 .update-positive {
-font-size: 20px;
-color: #669966;
+    font-size: 20px;
+    color: #669966;
 }
 
 .update-negative {
-font-size: 20px;
-color: red;
+    font-size: 20px;
+    color: red;
 }
 
 .update-neutral {
-font-size: 20px;
-color: #90908F;
+    font-size: 20px;
+    color: #90908F;
 }
+
 .update-gold {
-font-size: 20px;
+    font-size: 20px;
 }
 
 #shop {
-position: relative;
-border: solid brown;
-border-style: inset;
-float: left;
-background-color: gold;
-margin: 10px;
-padding: 10px;
-height: 360px;
-width: 350px;
+    position: relative;
+    border: solid brown;
+    border-style: inset;
+    float: left;
+    background-color: gold;
+    margin: 10px;
+    padding: 10px;
+    height: 200px;
+    width: 300px;
 }
 
 .product {
-border-style: inset;
-background-color: brown;
-float: left;
-margin: 5px;
-padding: 2px;
-font-size: 15px;
-font-weight: bold;
-cursor: pointer; 
+    border-style: inset;
+    background-color: brown;
+    float: left;
+    margin: 5px;
+    padding: 2px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 #shop button {
-position: absolute;
-clear: both;
-float: left;
-bottom: 0;
-left:0;
-margin: 5px;
+    position: absolute;
+    clear: both;
+    float: left;
+    bottom: 0;
+    left: 0;
+    margin: 5px;
 }
 
 #attack {
-border-style: inset;
-float: left;
-background-color: gold;
-margin: 10px;
-padding: 10px;
-height: 80px;
-width: 260px;
+    border-style: inset;
+    float: left;
+    background-color: gold;
+    margin: 10px;
+    padding: 10px;
+    height: 80px;
+    width: 260px;
 }
 
 #good {
@@ -313,4 +316,78 @@ width: 260px;
     padding: 10px;
     height: 80px;
     width: 260px;
+}
+
+#choice {
+    border-style: inset;
+    float: left;
+    background-color: gold;
+    margin: 10px;
+    padding: 10px;
+    height: 80px;
+    width: 260px;
+}
+
+#player {
+    position: relative;
+    float: left;
+    background: url(../img/caravan/equipment_bg.png);
+    background-size: cover;
+    margin: 10px;
+    padding: 10px;
+    height: 286px;
+    width: 260px;
+    image-rendering: pixelated;
+}
+
+.picture img {
+    margin: 5px auto 10px;
+    display: block;
+    width: 80px;
+    height: 160px;
+    image-rendering: pixelated;
+    float:left;
+}
+
+#inventory {
+    border-style: inset;
+    position: relative;
+    float: left;
+    background-color: gold;
+    margin: 10px;
+    padding: 10px;
+    height: 220px;
+    width: 527px;
+}
+
+#inv-btn {
+    background-size: cover;
+    height: 32px;
+    width: 64px;
+    background: url(../img/caravan/book1.png) no-repeat;
+    cursor: pointer;
+    position: relative;
+    left: 295px;
+    top: 415px;
+}
+
+.fill {
+    background: url(../img/caravan/guns.png);
+    background-size: cover;
+    position: relative;
+    height: 33px;
+    width: 33px;
+    top: 5px;
+    left: 5px;
+    cursor: pointer;
+}
+
+.empty {
+    display: inline-block;
+    height: 43px;
+    width: 43px;
+    margin: 5px 5px;
+    background: url(../img/caravan/slot.png);
+    background-size: cover;
+    vertical-align: middle;
 }

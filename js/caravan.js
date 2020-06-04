@@ -1,26 +1,148 @@
- var OregonH = OregonH || {};
+var OregonH = OregonH || {};
 var audio, playbtn, mutebtn, seek_bar;
 var progress = document.querySelector('#progress');
+var i = 0;
+var inv_btn = document.getElementById('inv-btn');
+var inv = document.getElementById('inventory');
 
- OregonH.Event = {};
+var pressed = false;
+inv_btn.onclick = function () {
+  if(pressed == false) {
+    inv.classList.remove('hidden');
+    inv_btn.style.background = "url(../img/caravan/book2.png)";
+    pressed = true;
+  } else {
+    inv.classList.add('hidden');
+    inv_btn.style.background = "url(../img/caravan/book1.png) no-repeat";
+    pressed = false;
+  }
+}
+//?-----------------------------------------------------------------------?//
+const fill = document.querySelector('#fill');
+const empties = document.querySelectorAll('#empty');
+
+// Fill listeners
+fill.addEventListener('dragstart', dragStart);
+fill.addEventListener('dragend', dragEnd);
+
+// Loop through empty boxes and add listeners
+for (const empty of empties) {
+  empty.addEventListener('dragover', dragOver);
+  empty.addEventListener('dragenter', dragEnter);
+  empty.addEventListener('dragleave', dragLeave);
+  empty.addEventListener('drop', dragDrop);
+}
+
+// Drag Functions
+function dragStart() {
+  this.className += ' hold';
+  setTimeout(() => (this.className = 'invisible'), 0);
+  console.log(1);
+}
+
+function dragEnd() {
+  this.className = 'fill';
+}
+
+function dragOver(e) {
+  e.preventDefault();
+  console.log(3);
+}
+
+function dragEnter(e) {
+  e.preventDefault();
+  this.className += ' hovered';
+  console.log(4);
+}
+
+function dragLeave() {
+  this.className = 'empty';
+  console.log(5);
+}
+
+function dragDrop() {
+  this.className = 'empty';
+  this.append(fill);
+  console.log(6);
+}
+/*function dragDrop() {
+  this.style.background = "url(../img/caravan/slot.png)";
+  this.append(fill);
+}*/
+//?-----------------------------------------------------------------------?//
+
+OregonH.Event = {};
+OregonH.Items = {};
+
+OregonH.Items.items = [{
+    name: 'kard',
+    dmg: 5,
+    rarity: 'common',
+    //image: url(),
+  },
+  {
+    name: 'ij',
+    dmg: 10,
+    rarity: 'common',
+    //image: url(),
+  },
+  {
+    name: 'sisak',
+    dmg: 2,
+    rarity: 'common',
+    //image: url(),
+  },
+  {
+    name: 'mellvert',
+    armor: 6,
+    rarity: 'common',
+    //image: url(),
+  },
+  {
+    name: 'nadrag',
+    dmg: 1,
+    rarity: 'common',
+    //image: url(),
+  },
+  {
+    name: 'pajzs',
+    dmg: 10,
+    rarity: 'common',
+    //image: url(),
+  },
+  {
+    name: 'csizma',
+    dmg: 4,
+    rarity: 'common',
+    //image: url(),
+  },
+];
+
+   //?-----------------------------------------------------------------------?//
 
  OregonH.Event.eventTypes = [{
+    type: 'TIPS',
+    notification: 'tips',
+    text: ''
+   },
+   //?-----------------------------------------------------------------------?//
+   {
+    type: 'CHOICE',
+    notification: 'choice',
+    stat1: 'ökör',
+    value1: -1,
+    stat2: 'étel',
+    //value2: ,
+    text: 'Fogytán van az élelmed, levágod-e egy ökrödet élelemért?'
+   },
+   //?-----------------------------------------------------------------------?//
+   {
      type: 'STAT-CHANGE',
      notification: 'negative',
      stat: 'étel',
      value: -3,
      text: 'Megromlott az étel. Veszteség: '
    },
-
-   //?-----------------------------------------------------------------------?//
-
-   {
-    type: 'CHOICES',
-    notification: 'choice',
-
-    text: '',
-   },
-
    {
      type: 'STAT-CHANGE',
      notification: 'positive',
@@ -168,9 +290,6 @@ var progress = document.querySelector('#progress');
      value: 30,
      text: 'Szárazság! A vízkészleted alaposan megcsappant! '
    },
-   //?-----------------------------------------------------------------------?//
-
-
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
@@ -283,7 +402,86 @@ var progress = document.querySelector('#progress');
      value: 1,
      text: 'Találtál egy vad ökröt, így van: '
    },
-   /*
+   //?-----------------------------------------------------------------------?//
+  /*{
+     type: 'SHOP',
+     notification: 'neutral',
+     text: 'Találtál egy boltot!',
+     products: [{
+         item: 'sisak',
+         qty: 1,
+         price: 50
+       },
+       {
+         item: 'mellvert',
+         qty: 1,
+         price: 200
+       },
+       {
+         item: 'kard',
+         qty: 1,
+         price: 50
+       },
+       {
+         item: 'ij',
+         qty: 1,
+         price: 80
+       }
+     ]
+   },*/
+   {
+     type: 'SHOP',
+     notification: 'neutral',
+     text: 'Találtál egy boltot!',
+     products: [{
+         item: 'sisak',
+         qty: 1,
+         price: 50
+       },
+       {
+         item: 'mellvert',
+         qty: 1,
+         price: 200
+       },
+       {
+         item: 'kard',
+         qty: 1,
+         price: 50
+       },
+       {
+         item: 'ij',
+         qty: 1,
+         price: 80
+       }
+     ]
+   },
+   {
+     type: 'SHOP',
+     notification: 'neutral',
+     text: 'Találtál egy boltot!',
+     products: [{
+       item: 'sisak',
+       qty: 1,
+       price: 50
+     },
+     {
+       item: 'mellvert',
+       qty: 1,
+       price: 200
+     },
+     {
+       item: 'kard',
+       qty: 1,
+       price: 50
+     },
+     {
+       item: 'ij',
+       qty: 1,
+       price: 80
+     }
+     ]
+   },
+
    {
      type: 'SHOP',
      notification: 'neutral',
@@ -310,62 +508,27 @@ var progress = document.querySelector('#progress');
        }
      ]
    },
-   */
    {
      type: 'SHOP',
      notification: 'neutral',
      text: 'Találtál egy boltot!',
      products: [{
          item: 'étel',
-         name: 'étel',
-         qty: 20,
-         price: 50
-       },
-       {
-         item: 'ökör',
-         name: 'ökör',
-         qty: 1,
-         price: 200
-       },
-       {
-         item: 'tűzerő',
-         name: 'tűzerő',
-         qty: 2,
-         price: 50
-       },
-       {
-         item: 'csapattag',
-         name: 'csapattag',
-         qty: 5,
-         price: 80
-       }
-     ]
-   },
-   {
-     type: 'SHOP',
-     notification: 'neutral',
-     text: 'Találtál egy boltot!',
-     products: [{
-         item: 'étel',
-         name: 'étel',
          qty: 30,
          price: 50
        },
        {
          item: 'ökör',
-         name: 'ökör',
          qty: 1,
          price: 200
        },
        {
          item: 'tűzerő',
-         name: 'tűzerő',
          qty: 2,
          price: 20
        },
        {
          item: 'csapattag',
-         name: 'csapattag',
          qty: 10,
          price: 80
        }
@@ -377,30 +540,27 @@ var progress = document.querySelector('#progress');
      text: 'A csempészek jó dolgokat árulnak!',
      products: [{
          item: 'étel',
-         name: 'étel',
          qty: 30,
          price: 10
        },
        {
          item: 'ökör',
-         name: 'ökör',
          qty: 3,
          price: 50
        },
        {
          item: 'tűzerő',
-         name: 'tűzerő',
          qty: 7,
          price: 20
        },
        {
          item: 'csapattag',
-         name: 'csapattag',
          qty: 10,
          price: 30
        }
      ]
    },
+   //?-----------------------------------------------------------------------?//
    {
      type: 'ATTACK',
      notification: 'negative',
@@ -421,11 +581,12 @@ var progress = document.querySelector('#progress');
      notification: 'positive',
      text: 'Találkoztál egy rejtélyes öregúrral!'
    }
+   //?-----------------------------------------------------------------------?//
  ];
 
 function initAudioPlayer() {
   audio = new Audio();
-  audio.src = "../audio/caravan/caravan.mp3";
+  audio.src = "../audio/caravan/caravan.mp3"; //!---------------------------------
   volume.addEventListener('change', function(e) {
     audio.volume = e.currentTarget.value / 100;
   });
@@ -609,6 +770,10 @@ function initAudioPlayer() {
    this.distance += speed;
  };
 
+ OregonH.Caravan.updateXp = function() {
+   this.xp += Math.round(OregonH.XP_PER_DAY);
+ }
+
  //food consumption
  OregonH.Caravan.consumeFood = function () {
    this.étel -= this.csapattag * OregonH.FOOD_PER_PERSON;
@@ -711,6 +876,7 @@ function initAudioPlayer() {
    this.caravan[product.item] += +product.qty;
 
    OregonH.UI.notify('Vásároltál ' + product.qty + ' x ' + product.item, 'positive');
+   console.log();
 
    //update weight
    OregonH.UI.caravan.updateWeight();
@@ -721,6 +887,85 @@ function initAudioPlayer() {
    return true;
 
  };
+
+  OregonH.UI.showShop = function (products) {
+
+   //get shop area
+   var shopDiv = document.getElementById('shop');
+   shopDiv.classList.remove('hidden');
+
+   //init the shop just once
+   if (!this.shopInitiated) {
+
+     //event delegation
+     shopDiv.addEventListener('click', function (e) {
+       //what was clicked
+       var target = e.target || e.src;
+
+       //exit button
+       if (target.tagName == 'BUTTON') {
+         //resume journey
+         shopDiv.classList.add('hidden');
+         OregonH.UI.game.resumeJourney();
+       } else if (target.tagName == 'DIV' && target.className.match(/product/)) {
+
+         console.log('buying')
+
+         var bought = OregonH.UI.buyProduct({
+           item: target.getAttribute('data-item'),
+           qty: target.getAttribute('data-qty'),
+           price: target.getAttribute('data-price')
+         });
+
+         if (bought) target.html = '';
+       }
+     });
+
+     this.shopInitiated = true;
+   }
+
+   //clear existing content
+   var prodsDiv = document.getElementById('prods');
+   prodsDiv.innerHTML = '';
+
+   //show products
+   var list = ["csapattag", "ökör", "étel", "folyadék", "pénz", "tűzerő"];
+   var product;
+   for (var i = 0; i < products.length; i++) {
+     product = products[i];
+     console.log(product.item);
+     prodsDiv.innerHTML += '<div class="product" data-qty="' + product.qty + '" data-item="' + product.item + '" data-price="' + product.price + '">' + product.qty + ' ' + product.item + ' - $' + product.price + '</div>';
+   }
+
+   //setup click event
+   //document.getElementsByClassName('product').addEventListener(OregonH.UI.buyProduct);
+ };
+
+ //buy product
+ OregonH.UI.buyProduct = function (product) {
+   //check we can afford it
+   if (product.price > this.caravan.pénz) {
+     OregonH.UI.notify('Nincs elég pénzed!', 'negative');
+     return false;
+   }
+
+   this.caravan.pénz -= product.price;
+
+   this.caravan[product.item] += +product.qty;
+
+   OregonH.UI.notify('Vásároltál ' + product.qty + ' x ' + product.item, 'positive');
+   console.log();
+
+   //update weight
+   OregonH.UI.caravan.updateWeight();
+
+   //update visuals
+   OregonH.UI.refreshStats();
+
+   return true;
+
+ };
+
 
  //show attack
  OregonH.UI.showAttack = function (tűzerő, gold) {
@@ -844,11 +1089,12 @@ function initAudioPlayer() {
  OregonH.FIREPOWER_WEIGHT = 5;
  OregonH.GAME_SPEED = 800;
  OregonH.DAY_PER_STEP = 0.2;
+ OregonH.XP_PER_DAY = Math.random(1, 10);
  OregonH.FOOD_PER_PERSON = 0.02;
  OregonH.WATER_PER_PERSON = 0.01; //! lehet kell nagyobbitani (0.05)
  OregonH.FULL_SPEED = 5;
  OregonH.SLOW_SPEED = 3;
- OregonH.FINAL_DISTANCE = 1000;
+ OregonH.FINAL_DISTANCE = 5000;
  OregonH.EVENT_PROBABILITY = 0.15;
  OregonH.ENEMY_FIREPOWER_AVG = 5;
  OregonH.ENEMY_GOLD_AVG = 50;
@@ -875,7 +1121,10 @@ function initAudioPlayer() {
      folyadék: 100,
      ökör: 2,
      pénz: 300,
-     tűzerő: 2
+     tűzerő: 2,
+     pancel: 5,
+     elet: 100,
+     xp: 0,
    });
 
    //pass references
@@ -936,9 +1185,14 @@ function initAudioPlayer() {
  OregonH.Game.updateGame = function () {
    //day update
    this.caravan.day += OregonH.DAY_PER_STEP;
-
+    this.caravan.updateXp();
    //étel consumption
    this.caravan.consumeFood();
+
+   if(this.caravan.xp == 50) {
+     this.caravan.xp = 0;
+     this.caravan.elet += 25;
+   }
 
    if (this.caravan.étel === 0) {
      this.ui.notify('A karavánod éhenhalt!', 'negative');
@@ -987,6 +1241,6 @@ function initAudioPlayer() {
    this.step();
  };
 
-
+//module.exports(OregonH);
  //init game
  OregonH.Game.init();
