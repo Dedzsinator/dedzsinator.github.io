@@ -1,4 +1,4 @@
-var OregonH = OregonH || {};
+var Caravan = Caravan || {};
 var audio, playbtn, mutebtn, seek_bar;
 var progress = document.querySelector('#progress');
 var i = 0;
@@ -17,13 +17,165 @@ inv_btn.onclick = function () {
     pressed = false;
   }
 }
-//?-----------------------------------------------------------------------?//
-const fill = document.querySelector('#fill');
+//!!!!!!!!
+
+const person = {
+  hp: 50, ///Hit points
+  mp: 25, ///Magic Stamina points
+  armor : 0.0, ///Pourcentage of damage ignored (1 = 1%)
+  shield: 0, ///Hit points that regen. passively
+  physDmg: 5, ///Physical Damage
+  fireDmg: 0, ///Fire Damage (strong against lightning)
+  coldDmg: 0, ///Cold Damage (strong against fire)
+  lightningDmg: 0, ///Lightning Damage (strong against cold)
+  fireResistance: 0, ///Take less fireDmg (1 = 1%)
+  coldResistance: 0, ///Take less coldDmg (1 = 1%)
+  lightningResistance: 0, ///Take less lightningDmg (1 = 1%)
+  healPower: 5, ///Healing Hit points
+  pureDmg: 0, ///Damage that ignore all resistances
+  critChance: 10, ///Chance to do more damage (10 = 10% chance to crit)
+  critDmg: 1.0, ///Times the damage gets multiplied when criting.
+  equippedItems: {helmetSlot: 0, bodyarmourSlot: 0, gloveSlot: 0, beltSlot: 0, ringSlot: 0, amuletSlot: 0, weaponSlot: 0},
+  backpack: [],
+};
+
+function ItemType(type) {
+  this.type = type
+}
+
+function Item(name, type, image, level, physDmg, armor) {
+  this.name = name
+  this.type = type
+  this.image = image
+  this.level = level
+  this.physDmg = physDmg
+  this.armor = armor
+}
+
+
+var bearHead = new Item("Bear Head", "helmet", "blank.png", 0, 100, 0)
+var redCloth = new Item("Red Cloth", "bodyarmour", "redcloth.png", 2, 10, 5)
+
+var helmetBlank = new Item("Nothing", "helmet", "blank.png", 0, 0, 0)
+var bodyarmourBlank = new Item("Nothing", "bodyarmour", "blank.png", 0, 0, 0)
+var gloveBlank = new Item("Nothing", "glove", "blank.png", 0, 0, 0)
+var beltBlank = new Item("Nothing", "belt", "blank.png", 0, 0, 0)
+var ringBlank = new Item("Nothing", "ring", "blank.png", 0, 0, 0)
+var amuletBlank = new Item("Nothing", "amulet", "blank.png", 0, 0, 0)
+var weaponBlank = new Item("Nothing", "weapon", "blank.png", 0, 0, 0)
+person.equippedItems.helmetSlot = helmetBlank
+person.equippedItems.bodyarmourSlot = bodyarmourBlank
+person.equippedItems.gloveSlot = gloveBlank
+person.equippedItems.beltSlot = beltBlank
+person.equippedItems.ringSlot = ringBlank
+person.equippedItems.amuletSlot = amuletBlank
+person.equippedItems.weaponSlot = weaponBlank
+var helmet = new ItemType(1)
+var bodyarmour = new ItemType(2)
+var glove = new ItemType(3)
+var belt = new ItemType(4)
+var ring = new ItemType(5)
+var amulet = new ItemType(6)
+var weapon = new ItemType(7)
+
+
+person.backpack.push(redCloth)
+person.backpack.push(bearHead)
+console.log('0 = Backpack')
+console.log('1 = Equipped Items')
+console.log('2 = Put on item')
+for (let f = 0; f < 10; f++){
+  var premiereQuestion = prompt("Choose Option");
+
+  if (premiereQuestion == null || premiereQuestion.toLowerCase() === "q") {
+    break
+  }
+
+  if (premiereQuestion == 0) {
+    console.log("- ".repeat(10))
+    console.log("BACKPACK")
+    for (let i = 0; i < person.backpack.length; i++) {
+      console.log(person.backpack[i])
+    }
+  }
+  if (premiereQuestion == 1) {
+    console.log("- ".repeat(10))
+    console.log("EQUIPPED ITEMS")
+    console.log('Helmet: ' + person.equippedItems.helmetSlot.name)
+    console.log('Body Armour: ' + person.equippedItems.bodyarmourSlot.name)
+    console.log('Glove: ' + person.equippedItems.gloveSlot.name)
+    console.log('Belt: ' + person.equippedItems.beltSlot.name)
+    console.log('Ring: ' + person.equippedItems.ringSlot.name)
+    console.log('Amulet: ' + person.equippedItems.amuletSlot.name)
+    console.log('Weapon: ' + person.equippedItems.weaponSlot.name)
+  }
+  if (premiereQuestion == 2) {
+    console.log("- ".repeat(10))
+    console.log("PUT ON ITEM")
+
+    console.log("Backpack:")
+    for (let u = 0; u < person.backpack.length; u++) {
+      console.log('ItemSlot' + u + ': ' + person.backpack[u].name)
+    }
+
+    for (v = 0; v < 1; v++) {
+      var a = +prompt("Choose Item Number")
+      if (person.backpack[a].type == "helmet"){
+        person.backpack.push(person.equippedItems.helmetSlot);
+        person.equippedItems.helmetSlot = person.backpack[a]
+        person.backpack.splice(a, 1)
+        break;
+      }
+      if (person.backpack[a].type == "bodyarmour"){
+        person.backpack.push(person.equippedItems.bodyarmourSlot);
+        person.equippedItems.bodyarmourSlot = person.backpack[a]
+        person.backpack.splice(a, 1)
+        break;
+      }
+      if (person.backpack[a].type == "glove"){
+        person.backpack.push(person.equippedItems.gloveSlot);
+        person.equippedItems.gloveSlot = person.backpack[a]
+        person.backpack.splice(a, 1)
+        break;
+      }
+      if (person.backpack[a].type == "belt"){
+        person.backpack.push(person.equippedItems.beltSlot);
+        person.equippedItems.beltSlot = person.backpack[a]
+        person.backpack.splice(a, 1)
+        break;
+      }
+      if (person.backpack[a].type == "ring"){
+        person.backpack.push(person.equippedItems.ringSlot);
+        person.equippedItems.ringSlot = person.backpack[a]
+        person.backpack.splice(a, 1)
+        break;
+      }
+      if (person.backpack[a].type == "amulet"){
+        person.backpack.push(person.equippedItems.amuletSlot);
+        person.equippedItems.amuletSlot = person.backpack[a]
+        person.backpack.splice(a, 1)
+        break;
+      }
+      if (person.backpack[a].type == "weapon"){
+        person.backpack.push(person.equippedItems.weaponSlot);
+        person.equippedItems.weaponSlot = person.backpack[a]
+        person.backpack.splice(a, 1)
+        break;
+      }
+    }
+  }
+}
+
+
+//?-----------------------------------------------------------------------?// WORKS WITHOUT THIS, REPLACE
+const item = document.querySelector('#fill');
 const empties = document.querySelectorAll('#empty');
 
+item = redCloth.image;
+
 // Fill listeners
-fill.addEventListener('dragstart', dragStart);
-fill.addEventListener('dragend', dragEnd);
+item.addEventListener('dragstart', dragStart);
+item.addEventListener('dragend', dragEnd);
 
 // Loop through empty boxes and add listeners
 for (const empty of empties) {
@@ -71,17 +223,17 @@ function dragDrop() {
 }*/
 //?-----------------------------------------------------------------------?//
 
-OregonH.Event = {};
-OregonH.Items = {};
+Caravan.Event = {};
+Caravan.Items = {};
 
-OregonH.Items.items = [{
+Caravan.Items.items = [{
     name: 'kard',
     dmg: 5,
     rarity: 'common',
     //image: url(),
   },
   {
-    name: 'ij',
+    name: 'ijj',
     dmg: 10,
     rarity: 'common',
     //image: url(),
@@ -120,7 +272,7 @@ OregonH.Items.items = [{
 
    //?-----------------------------------------------------------------------?//
 
- OregonH.Event.eventTypes = [{
+ Caravan.Event.eventTypes = [{
     type: 'TIPS',
     notification: 'tips',
     text: ''
@@ -188,16 +340,16 @@ OregonH.Items.items = [{
    {
      type: 'STAT-CHANGE',
      notification: 'positive',
-     stat: 'pénz',
+     stat: 'gold',
      value: 50,
      text: 'Észrevettél egy csillogó követ a fa alatt! '
    },
    {
      type: 'STAT-CHANGE',
      notification: 'positive',
-     stat: 'pénz',
+     stat: 'gold',
      value: 30,
-     text: 'Egy holttestet találtál az út szélén, pénzzel a zsebében! '
+     text: 'Egy holttestet találtál az út szélén, goldzel a zsebében! '
    },
    {
      type: 'STAT-CHANGE',
@@ -307,7 +459,7 @@ OregonH.Items.items = [{
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'pénz',
+     stat: 'gold',
      value: -50,
      text: 'Megloptak a zsebtolvajok $'
    },
@@ -363,14 +515,14 @@ OregonH.Items.items = [{
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'pénz',
+     stat: 'gold',
      value: -100,
-     text: 'Elitadd a pénzedet!'
+     text: 'Elitadd a goldedet!'
    },
    {
      type: 'STAT-CHANGE',
      notification: 'negative',
-     stat: 'pénz',
+     stat: 'gold',
      value: -30,
      text: 'Leesett a karavánról a zsákmányod '
    },
@@ -423,7 +575,7 @@ OregonH.Items.items = [{
          price: 50
        },
        {
-         item: 'ij',
+         item: 'ijjj',
          qty: 1,
          price: 80
        }
@@ -449,7 +601,7 @@ OregonH.Items.items = [{
          price: 50
        },
        {
-         item: 'ij',
+         item: 'ijj',
          qty: 1,
          price: 80
        }
@@ -475,7 +627,7 @@ OregonH.Items.items = [{
        price: 50
      },
      {
-       item: 'ij',
+       item: 'ijj',
        qty: 1,
        price: 80
      }
@@ -620,7 +772,7 @@ function initAudioPlayer() {
   }
 }
 
- OregonH.Event.generateEvent = function () {
+ Caravan.Event.generateEvent = function () {
    //pick random one
    var eventIndex = Math.floor(Math.random() * this.eventTypes.length);
    var eventData = this.eventTypes[eventIndex];
@@ -663,7 +815,7 @@ function initAudioPlayer() {
  ////////////////////////////////////////////////////////////////
 
 
- OregonH.Event.stateChangeEvent = function (eventData) {
+ Caravan.Event.stateChangeEvent = function (eventData) {
    //can't have negative quantities
    if (eventData.value + this.caravan[eventData.stat] >= 0) {
      this.caravan[eventData.stat] += eventData.value;
@@ -671,7 +823,7 @@ function initAudioPlayer() {
    }
  };
 
- OregonH.Event.shopEvent = function (eventData) {
+ Caravan.Event.shopEvent = function (eventData) {
    //number of products for sale
    var numProds = Math.ceil(Math.random() * 4);
 
@@ -698,8 +850,8 @@ function initAudioPlayer() {
 
  //////////////////////////////////////////////////////////////////
 
- OregonH.Event.goodEvent = function (eventData) {
-   var étel = Math.round(0.7 + 0.6 * Math.random() * OregonH.FOOD_AVG);
+ Caravan.Event.goodEvent = function (eventData) {
+   var étel = Math.round(0.7 + 0.6 * Math.random() * Caravan.FOOD_AVG);
 
    this.ui.showGood(étel);
  };
@@ -707,43 +859,43 @@ function initAudioPlayer() {
  //////////////////////////////////////////////////////////////////
 
  //prepare an attack event
- OregonH.Event.attackEvent = function (eventData) {
-   var tűzerő = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_FIREPOWER_AVG);
-   var gold = Math.round((0.7 + 0.6 * Math.random()) * OregonH.ENEMY_GOLD_AVG);
+ Caravan.Event.attackEvent = function (eventData) {
+   var tűzerő = Math.round((0.7 + 0.6 * Math.random()) * Caravan.ENEMY_FIREPOWER_AVG);
+   var gold = Math.round((0.7 + 0.6 * Math.random()) * Caravan.ENEMY_GOLD_AVG);
 
    this.ui.showAttack(tűzerő, gold);
  };
- var OregonH = OregonH || {};
+ var Caravan = Caravan || {};
 
- OregonH.Caravan = {};
+ Caravan.Caravan = {};
 
- OregonH.Caravan.init = function (stats) {
+ Caravan.Caravan.init = function (stats) {
    this.day = stats.day;
    this.distance = stats.distance;
    this.csapattag = stats.csapattag;
    this.étel = stats.étel;
    this.folyadék = stats.folyadék;
    this.ökör = stats.ökör;
-   this.pénz = stats.pénz;
+   this.gold = stats.gold;
    this.tűzerő = stats.tűzerő;
  };
 
  //update weight and capacity
- OregonH.Caravan.updateWeight = function () {
+ Caravan.Caravan.updateWeight = function () {
    var droppedFood = 0;
    var droppedGuns = 0;
 
    //how much can the caravan carry
-   this.capacity = this.ökör * OregonH.WEIGHT_PER_OX + this.csapattag * OregonH.WEIGHT_PER_PERSON;
+   this.capacity = this.ökör * Caravan.WEIGHT_PER_OX + this.csapattag * Caravan.WEIGHT_PER_PERSON;
 
    //how much weight do we currently have
-   this.weight = this.étel * OregonH.FOOD_WEIGHT + this.tűzerő * OregonH.FIREPOWER_WEIGHT;
+   this.weight = this.étel * Caravan.FOOD_WEIGHT + this.tűzerő * Caravan.FIREPOWER_WEIGHT;
 
    //drop things behind if it's too much weight
    //assume guns get dropped before food
    while (this.tűzerő && this.capacity <= this.weight) {
      this.tűzerő--;
-     this.weight -= OregonH.FIREPOWER_WEIGHT;
+     this.weight -= Caravan.FIREPOWER_WEIGHT;
      droppedGuns++;
    }
 
@@ -753,7 +905,7 @@ function initAudioPlayer() {
 
    while (this.étel && this.capacity <= this.weight) {
      this.étel--;
-     this.weight -= OregonH.FOOD_WEIGHT;
+     this.weight -= Caravan.FOOD_WEIGHT;
      droppedFood++;
    }
 
@@ -763,36 +915,46 @@ function initAudioPlayer() {
  };
 
  //update covered distance
- OregonH.Caravan.updateDistance = function () {
+ Caravan.Caravan.updateDistance = function () {
    //the closer to capacity, the slower
-   var diff = this.capacity - this.weight;
-   var speed = OregonH.SLOW_SPEED + diff / this.capacity * OregonH.FULL_SPEED;
+   var diff = this.capacity - this.weight + this.ökör;
+   var speed = Caravan.SLOW_SPEED + diff / this.capacity * Caravan.FULL_SPEED;
    this.distance += speed;
  };
 
- OregonH.Caravan.updateXp = function() {
-   this.xp += Math.round(OregonH.XP_PER_DAY);
- }
+ Caravan.Caravan.updateXp = function() {
+   this.xp += Math.round(Caravan.XP_PER_DAY);
+ } 
+
+ //water consumption
+ Caravan.Caravan.consumeWater = function () {
+  this.folyadék -= this.csapattag * Caravan.WATER_PER_PERSON;
+
+  if (this.folyadék < 0) {
+    this.folyadék = 0;
+  }
+};
 
  //food consumption
- OregonH.Caravan.consumeFood = function () {
-   this.étel -= this.csapattag * OregonH.FOOD_PER_PERSON;
+ Caravan.Caravan.consumeFood = function () {
+   this.étel -= this.csapattag * Caravan.FOOD_PER_PERSON;
 
    if (this.étel < 0) {
      this.étel = 0;
    }
  };
- var OregonH = OregonH || {};
+ 
+ var Caravan = Caravan || {};
 
- OregonH.UI = {};
+ Caravan.UI = {};
 
  //show a notification in the message area
- OregonH.UI.notify = function (message, type) {
+ Caravan.UI.notify = function (message, type) {
    document.getElementById('updates-area').innerHTML = '<div class="update-' + type + '">' + Math.ceil(this.caravan.day) + '. ' + 'Nap' + ': ' + message + '</div>' + document.getElementById('updates-area').innerHTML;
  };
 
  //refresh visual caravan stats
- OregonH.UI.refreshStats = function () {
+ Caravan.UI.refreshStats = function () {
    //modify the dom
    document.getElementById('stat-day').innerHTML = Math.ceil(this.caravan.day);
    document.getElementById('stat-distance').innerHTML = Math.floor(this.caravan.distance);
@@ -800,17 +962,17 @@ function initAudioPlayer() {
    document.getElementById('stat-oxen').innerHTML = this.caravan.ökör;
    document.getElementById('stat-food').innerHTML = Math.ceil(this.caravan.étel);
    document.getElementById('stat-liquid').innerHTML = Math.ceil(this.caravan.folyadék);
-   document.getElementById('stat-money').innerHTML = this.caravan.pénz;
+   document.getElementById('stat-money').innerHTML = this.caravan.gold;
    document.getElementById('stat-firepower').innerHTML = this.caravan.tűzerő;
    document.getElementById('stat-weight').innerHTML = Math.ceil(this.caravan.weight) + '/' + this.caravan.capacity;
 
 
    //update caravan position
-   document.getElementById('caravan').style.left = (380 * this.caravan.distance / OregonH.FINAL_DISTANCE) + 'px';
+   document.getElementById('caravan').style.left = (380 * this.caravan.distance / Caravan.FINAL_DISTANCE) + 'px';
  };
 
  //show shop
- OregonH.UI.showShop = function (products) {
+ Caravan.UI.showShop = function (products) {
 
    //get shop area
    var shopDiv = document.getElementById('shop');
@@ -828,12 +990,12 @@ function initAudioPlayer() {
        if (target.tagName == 'BUTTON') {
          //resume journey
          shopDiv.classList.add('hidden');
-         OregonH.UI.game.resumeJourney();
+         Caravan.UI.game.resumeJourney();
        } else if (target.tagName == 'DIV' && target.className.match(/product/)) {
 
          console.log('buying')
 
-         var bought = OregonH.UI.buyProduct({
+         var bought = Caravan.UI.buyProduct({
            item: target.getAttribute('data-item'),
            qty: target.getAttribute('data-qty'),
            price: target.getAttribute('data-price')
@@ -851,7 +1013,7 @@ function initAudioPlayer() {
    prodsDiv.innerHTML = '';
 
    //show products
-   var list = ["csapattag", "ökör", "étel", "folyadék", "pénz", "tűzerő"];
+   var list = ["csapattag", "ökör", "étel", "folyadék", "gold", "tűzerő"];
    var product;
    for (var i = 0; i < products.length; i++) {
      product = products[i];
@@ -860,35 +1022,35 @@ function initAudioPlayer() {
    }
 
    //setup click event
-   //document.getElementsByClassName('product').addEventListener(OregonH.UI.buyProduct);
+   //document.getElementsByClassName('product').addEventListener(Caravan.UI.buyProduct);
  };
 
  //buy product
- OregonH.UI.buyProduct = function (product) {
+ Caravan.UI.buyProduct = function (product) {
    //check we can afford it
-   if (product.price > this.caravan.pénz) {
-     OregonH.UI.notify('Nincs elég pénzed!', 'negative');
+   if (product.price > this.caravan.gold) {
+     Caravan.UI.notify('Nincs elég golded!', 'negative');
      return false;
    }
 
-   this.caravan.pénz -= product.price;
+   this.caravan.gold -= product.price;
 
    this.caravan[product.item] += +product.qty;
 
-   OregonH.UI.notify('Vásároltál ' + product.qty + ' x ' + product.item, 'positive');
+   Caravan.UI.notify('Vásároltál ' + product.qty + ' x ' + product.item, 'positive');
    console.log();
 
    //update weight
-   OregonH.UI.caravan.updateWeight();
+   Caravan.UI.caravan.updateWeight();
 
    //update visuals
-   OregonH.UI.refreshStats();
+   Caravan.UI.refreshStats();
 
    return true;
 
  };
 
-  OregonH.UI.showShop = function (products) {
+  Caravan.UI.showShop = function (products) {
 
    //get shop area
    var shopDiv = document.getElementById('shop');
@@ -906,12 +1068,12 @@ function initAudioPlayer() {
        if (target.tagName == 'BUTTON') {
          //resume journey
          shopDiv.classList.add('hidden');
-         OregonH.UI.game.resumeJourney();
+         Caravan.UI.game.resumeJourney();
        } else if (target.tagName == 'DIV' && target.className.match(/product/)) {
 
          console.log('buying')
 
-         var bought = OregonH.UI.buyProduct({
+         var bought = Caravan.UI.buyProduct({
            item: target.getAttribute('data-item'),
            qty: target.getAttribute('data-qty'),
            price: target.getAttribute('data-price')
@@ -929,7 +1091,7 @@ function initAudioPlayer() {
    prodsDiv.innerHTML = '';
 
    //show products
-   var list = ["csapattag", "ökör", "étel", "folyadék", "pénz", "tűzerő"];
+   var list = ["csapattag", "ökör", "étel", "folyadék", "gold", "tűzerő"];
    var product;
    for (var i = 0; i < products.length; i++) {
      product = products[i];
@@ -938,29 +1100,29 @@ function initAudioPlayer() {
    }
 
    //setup click event
-   //document.getElementsByClassName('product').addEventListener(OregonH.UI.buyProduct);
+   //document.getElementsByClassName('product').addEventListener(Caravan.UI.buyProduct);
  };
 
  //buy product
- OregonH.UI.buyProduct = function (product) {
+ Caravan.UI.buyProduct = function (product) {
    //check we can afford it
-   if (product.price > this.caravan.pénz) {
-     OregonH.UI.notify('Nincs elég pénzed!', 'negative');
+   if (product.price > this.caravan.gold) {
+     Caravan.UI.notify('Nincs elég golded!', 'negative');
      return false;
    }
 
-   this.caravan.pénz -= product.price;
+   this.caravan.gold -= product.price;
 
    this.caravan[product.item] += +product.qty;
 
-   OregonH.UI.notify('Vásároltál ' + product.qty + ' x ' + product.item, 'positive');
+   Caravan.UI.notify('Vásároltál ' + product.qty + ' x ' + product.item, 'positive');
    console.log();
 
    //update weight
-   OregonH.UI.caravan.updateWeight();
+   Caravan.UI.caravan.updateWeight();
 
    //update visuals
-   OregonH.UI.refreshStats();
+   Caravan.UI.refreshStats();
 
    return true;
 
@@ -968,7 +1130,7 @@ function initAudioPlayer() {
 
 
  //show attack
- OregonH.UI.showAttack = function (tűzerő, gold) {
+ Caravan.UI.showAttack = function (tűzerő, gold) {
    var attackDiv = document.getElementById('attack');
    attackDiv.classList.remove('hidden');
 
@@ -992,7 +1154,7 @@ function initAudioPlayer() {
    }
  };
 
- OregonH.UI.showGood = function (étel) {
+ Caravan.UI.showGood = function (étel) {
    var attackDiv = document.getElementById('good');
    attackDiv.classList.remove('hidden');
 
@@ -1014,7 +1176,7 @@ function initAudioPlayer() {
  };
 
  //good
- OregonH.UI.accept = function () {
+ Caravan.UI.accept = function () {
 
    var gotFood = Math.floor((Math.random() * 20) + 1);
    this.caravan.étel += gotFood;
@@ -1024,7 +1186,7 @@ function initAudioPlayer() {
    this.game.resumeJourney();
  };
 
- OregonH.UI.decline = function () {
+ Caravan.UI.decline = function () {
 
    this.notify('nem fogadtad el az öregúr ajánlatát!', 'neutral');
    document.getElementById('decline').removeEventListener('click');
@@ -1035,7 +1197,7 @@ function initAudioPlayer() {
  };
 
  //fight
- OregonH.UI.fight = function () {
+ Caravan.UI.fight = function () {
 
    var tűzerő = this.caravan.tűzerő;
    gold = this.gold;
@@ -1045,7 +1207,7 @@ function initAudioPlayer() {
    //check there are survivors
    if (damage < this.caravan.csapattag) {
      this.caravan.csapattag -= damage;
-     this.caravan.pénz += gold;
+     this.caravan.gold += gold;
      this.notify(' megölték ' + damage + ' emberedet a harcban!', 'negative');
      this.notify('Találtál $' + gold, 'gold');
    } else {
@@ -1059,7 +1221,7 @@ function initAudioPlayer() {
  };
 
  //runing away from enemy
- OregonH.UI.runaway = function () {
+ Caravan.UI.runaway = function () {
 
    var tűzerő = this.tűzerő;
 
@@ -1079,40 +1241,40 @@ function initAudioPlayer() {
    this.game.resumeJourney();
 
  };
- var OregonH = OregonH || {};
+ var Caravan = Caravan || {};
 
  //constants
- OregonH.WEIGHT_PER_OX = 23;
- OregonH.WEIGHT_PER_PERSON = 2;
- OregonH.FOOD_WEIGHT = 0.6;
- OregonH.LIQUID_WEIGHT = 0.5;
- OregonH.FIREPOWER_WEIGHT = 5;
- OregonH.GAME_SPEED = 800;
- OregonH.DAY_PER_STEP = 0.2;
- OregonH.XP_PER_DAY = Math.random(1, 10);
- OregonH.FOOD_PER_PERSON = 0.02;
- OregonH.WATER_PER_PERSON = 0.01; //! lehet kell nagyobbitani (0.05)
- OregonH.FULL_SPEED = 5;
- OregonH.SLOW_SPEED = 3;
- OregonH.FINAL_DISTANCE = 5000;
- OregonH.EVENT_PROBABILITY = 0.15;
- OregonH.ENEMY_FIREPOWER_AVG = 5;
- OregonH.ENEMY_GOLD_AVG = 50;
- OregonH.FOOD_AVG = 37;
+ Caravan.WEIGHT_PER_OX = 23;
+ Caravan.WEIGHT_PER_PERSON = 2;
+ Caravan.FOOD_WEIGHT = 0.6;
+ Caravan.LIQUID_WEIGHT = 0.5;
+ Caravan.FIREPOWER_WEIGHT = 5;
+ Caravan.GAME_SPEED = 800;
+ Caravan.DAY_PER_STEP = 0.2;
+ Caravan.XP_PER_DAY = Math.random(1, 10);
+ Caravan.FOOD_PER_PERSON = 0.02;
+ Caravan.WATER_PER_PERSON = 0.01; //! lehet kell nagyobbitani (0.05)
+ Caravan.FULL_SPEED = 5;
+ Caravan.SLOW_SPEED = 3;
+ Caravan.FINAL_DISTANCE = 5000;
+ Caravan.EVENT_PROBABILITY = 0.15;
+ Caravan.ENEMY_FIREPOWER_AVG = 5;
+ Caravan.ENEMY_GOLD_AVG = 50;
+ Caravan.FOOD_AVG = 37;
 
- OregonH.Game = {};
+ Caravan.Game = {};
 
  //initiate the game
- OregonH.Game.init = function () {
+ Caravan.Game.init = function () {
 
    //reference ui
-   this.ui = OregonH.UI;
+   this.ui = Caravan.UI;
 
    //reference event manager
-   this.eventManager = OregonH.Event;
+   this.eventManager = Caravan.Event;
 
    //setup caravan
-   this.caravan = OregonH.Caravan;
+   this.caravan = Caravan.Caravan;
    this.caravan.init({
      day: 0,
      distance: 0,
@@ -1120,7 +1282,7 @@ function initAudioPlayer() {
      étel: 80,
      folyadék: 100,
      ökör: 2,
-     pénz: 300,
+     gold: 300,
      tűzerő: 2,
      pancel: 5,
      elet: 100,
@@ -1145,7 +1307,7 @@ function initAudioPlayer() {
  };
 
  //start the journey and time starts running
- OregonH.Game.startJourney = function () {
+ Caravan.Game.startJourney = function () {
    this.gameActive = true;
    this.previousTime = null;
    this.ui.notify('Egy új kaland veszi kezdetét!', 'positive');
@@ -1153,14 +1315,14 @@ function initAudioPlayer() {
    console.log(this.caravan.ökör);
    console.log(this.caravan.étel);
    console.log(this.caravan.folyadék);
-   console.log(this.caravan.pénz);
+   console.log(this.caravan.gold);
    console.log(this.caravan.tűzerő);
 
    this.step();
  };
 
  //game loop
- OregonH.Game.step = function (timestamp) {
+ Caravan.Game.step = function (timestamp) {
 
    //starting, setup the previous time for the first time
    if (!this.previousTime) {
@@ -1172,7 +1334,7 @@ function initAudioPlayer() {
    var progress = timestamp - this.previousTime;
 
    //game update
-   if (progress >= OregonH.GAME_SPEED) {
+   if (progress >= Caravan.GAME_SPEED) {
      this.previousTime = timestamp;
      this.updateGame();
    }
@@ -1182,12 +1344,13 @@ function initAudioPlayer() {
  };
 
  //update game stats
- OregonH.Game.updateGame = function () {
+ Caravan.Game.updateGame = function () {
    //day update
-   this.caravan.day += OregonH.DAY_PER_STEP;
+   this.caravan.day += Caravan.DAY_PER_STEP;
     this.caravan.updateXp();
    //étel consumption
    this.caravan.consumeFood();
+   this.caravan.consumeWater();
 
    if(this.caravan.xp == 50) {
      this.caravan.xp = 0;
@@ -1217,30 +1380,39 @@ function initAudioPlayer() {
      return;
    }
 
+   //check if has ox : died
+   if (this.caravan.ökör <= 0) {
+    this.caravan.ökör = 0;
+    this.ui.notify('Elfogytak az ökreid, így nem tudsz hazaérni!', 'negative');
+    this.gameActive = false;
+    return;
+  }
+
+
    //check win game
-   if (this.caravan.distance >= OregonH.FINAL_DISTANCE) {
+   if (this.caravan.distance >= Caravan.FINAL_DISTANCE) {
      this.ui.notify('Hazaértél!', 'positive');
      this.gameActive = false;
      return;
    }
 
    //random events
-   if (Math.random() <= OregonH.EVENT_PROBABILITY) {
+   if (Math.random() <= Caravan.EVENT_PROBABILITY) {
      this.eventManager.generateEvent();
    }
  };
 
  //pause the journey
- OregonH.Game.pauseJourney = function () {
+ Caravan.Game.pauseJourney = function () {
    this.gameActive = false;
  };
 
  //resume the journey
- OregonH.Game.resumeJourney = function () {
+ Caravan.Game.resumeJourney = function () {
    this.gameActive = true;
    this.step();
  };
 
-//module.exports(OregonH);
+//module.exports(Caravan);
  //init game
- OregonH.Game.init();
+ Caravan.Game.init();
